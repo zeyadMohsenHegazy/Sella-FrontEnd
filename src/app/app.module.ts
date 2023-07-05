@@ -6,17 +6,20 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './Components/Footer/footer.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
-
+import {HttpClientModule} from '@angular/common/http';
+import { ProductListComponent } from './Components/product-list/product-list.component'
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
     NotFoundComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

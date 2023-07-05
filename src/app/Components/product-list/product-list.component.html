@@ -1,0 +1,20 @@
+<table class="table table-success table-hover w-100">
+    <thead>
+  <tr>
+    <th>id</th>
+    <th>Name</th>
+    <th>price</th>
+    <th>length</th>
+    <th>color</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let P of Products">
+    <td>{{P.productID}}</td>
+    <td>{{P.productName}}</td>
+    <td>{{P.price}}</td>
+    <td>{{P.quantity}}</td>
+    <td>{{P.color}}</td>
+  </tr>
+</tbody>
+</table>
