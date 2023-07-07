@@ -1,249 +1,46 @@
-<!-- Start Header  -->
-<div class="container-fluid p-0 m-0 w-100 " id="top" >
-    <!-- Start Banner  -->
-    <div class="container">
-      <div class="header-banner">
-        <div class="container h-25">
-          <div class="row d-flex justify-content-around">
-            
-          </div>
-        </div>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark m-0">
+  <div class="container-fluid">
+    <a class="navbar-brand h2 text-light" href="#">Sella</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <form class="d-flex mx-auto">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link position-relative" href="#">
+            <i class="fa fa-cart-shopping fa-xl " style="color: #ffffff">
+              
+            </i>
+            <span
+              class="position-absolute top-20 start-0 translate-middle badge rounded-pill bg-danger">
+              1
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-primary me-2">Login</button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary">Register</button>
+        </li>
+      </ul>
     </div>
-    <!-- End Banner  -->
-  
-    <!-- Child Banner  -->
-    <!-- <div class="container">
-      <div class="child-banner">
-        <div class="container">
-          <div class="row pt-2 pb-2">
-             <div class="col-4 text-main-color">
-  
-              <i class="fa-regular ps-2 fa-star-half-stroke"></i>
-              Sella
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- End Banner  -->
-  
-    <!-- navigation -->
-    <div class="container">
-      <nav class="navbar navbar-expand-lg bg-body-light">
-        <div class="container">
-          <div class="row w-100">
-            <div class="col-3">
-              <div class="row">
-                <div class="col-1 nav-item dropdown ms-3 d-flex">
-                    <a class="nav-link"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false">  
-                        <i class="fa-solid fa-bars"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-start mt-3">
-                      <li class="m-2">
-                        <a
-                          class="dropdown-item d-flex justify-content-start"
-                          routerLink="/category"
-                          routerLinkActive="active"
-                          >ay 7aga</a
-                        >
-                      </li>
-                      <li class="m-2">
-                        <a
-                          class="dropdown-item d-flex justify-content-start"
-                          routerLinkActive="active">
-                         Products</a>
-                      </li>
-                  
-                      <li class="m-2">
-                        <a class="dropdown-item d-flex justify-content-start"
-                          href="#"
-                          >ay 7aga</a>
-                      </li>
-                    </ul>
-                  </div>
-                <div class="col text-main-color d-none d-md-block">
-                  <a routerLink="/home" class="text-main-color">
-                    <i class="fa-regular ps-2 fa-star-half-stroke ms-2"></i>
-                   Sella </a>
-                </div>
-              </div>
-            </div>
-            <div class="col-5">
-              <div class="d-none d-md-block">
-                <div class="input-group">
-                  <span class="input-group-text" id="addon-wrapping"
-                    ><i class="fa-solid fa-magnifying-glass"></i
-                  ></span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="search"
-                    aria-label="Example text with button addon"
-                    aria-describedby="button-addon1"
-                  />
-                  <button type="button" style="margin-left: 3px;" class="btn btn-outline-secondary rounded-2 search">
-                    Search
-                  </button>
-                </div>
-                <button
-                  type="button"
-                  class="navbar-toggler"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="fa-regular fa-user"></i>
-                      Account
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end m-2">
-                      <li class="btn btn-warning m-2">
-                         <a
-                          class="dropdown-item d-flex justify-content-start"
-                          routerLink="/login"
-                          routerLinkActive="active"
-                          
-                          >sign in</a
-                        >
-                      </li>
-                      <li>
-                        <hr class="dropdown-divider" />
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item d-flex justify-content-start"
-                          routerLink="/Register"
-                          routerLinkActive="active"> 
-                          <i class="fa-regular fa-user ms-2"></i>
-                          Create
-                        </a>
-                      </li>
-                      <li>
-                         <a
-                          class="dropdown-item d-flex justify-content-start"
-                          routerLink="/user/userprofile"
-                          routerLinkActive="active" >
-                          <i class="fa-regular fa-user ms-2"></i>
-                        settings
-                        </a> 
-                        settings
-                      </li>
-                      <li>
-                     <li>
-                        <a
-                          class="dropdown-item d-flex justify-content-start"
-                          routerLink="/home"
-                          routerLinkActive="active" >
-                          <i class="fa-regular fa-user ms-2"></i>
-                          siggn out
-                        </a>
-                        Logout
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i class="fa-regular fa-circle-question"></i>
-                      <!-- {{'help'|translate}} -->
-                      help
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                      <li class="m-2">
-                        <a
-                          class="dropdown-item d-flex justify-content-start"
-                          routerLink="/contacts/contact"
-                          routerLinkActive="active"
-                          >help</a
-                        >
-                      </li>
-                      <li class="m-2">
-                        <a
-                          class="dropdown-item d-flex justify-content-start"
-                          href="#"
-                          >help</a
-                        >
-                      </li>
-  
-                      <li class="m-2">
-                        <a
-                          class="dropdown-item d-flex justify-content-start"
-                          href="#"
-                          >cancel order</a
-                        >
-                      </li>
-                      <li class="m-2">
-                        <!-- <a class="dropdown-item d-flex justify-content-start" href="AboutUs.html">نبذه عنا</a> -->
-                        <a
-                          class="dropdown-item d-flex justify-content-start"
-                          routerLink="/AboutUss/AboutUs"
-                          routerLinkActive="active"
-                          >About</a
-                        >
-                        <!-- <a class="nav-link" routerLink="/AboutUs" routerLinkActive="active">About Us</a> -->
-                      </li>
-                    </ul>
-                  </li>
-  
-                  <li class="nav-item">
-                    <a
-                      class="nav-link"
-                      aria-current="page"
-                      routerLink="/cart/cartitem"
-                      routerLinkActive="active"
-                    > <button type="button" class="btn  position-relative">
-                      <i class="fa-solid fa-cart-plus"> </i> cart
-                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        1
-                        <span class="visually-hidden">unread messages</span>
-                      </span>
-                    </button>
-  
-                      <!-- <div class="cart_value">
-  
-                      </div> -->
-  
-  
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <!--navigation -->
-    <!-- Start Slider  -->
-    
-    <!-- End Slider  -->
   </div>
-  <!-- End Header -->
-  
+</nav>

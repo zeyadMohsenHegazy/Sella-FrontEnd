@@ -8,7 +8,8 @@ import { HeaderComponent } from './Components/header/header.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ProductListComponent } from './Components/product-list/product-list.component';
-import { BannerComponent } from './Components/banner/banner.component'
+import { BannerComponent } from './Components/banner/banner.component';
+import { ReviewsComponent } from './Components/reviews/reviews.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +18,7 @@ import { BannerComponent } from './Components/banner/banner.component'
     NotFoundComponent,
     ProductListComponent,
     BannerComponent,
+    ReviewsComponent,
     
   ],
   imports: [
