@@ -9,7 +9,9 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ProductListComponent } from './Components/product-list/product-list.component';
 import { BannerComponent } from './Components/banner/banner.component';
-import { ReviewsComponent } from './Components/reviews/reviews.component'
+import { ReviewsComponent } from './Components/reviews/reviews.component';
+import { CartComponent } from './Components/cart/cart.component';
+import { HomeComponent } from './Components/home/home.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +21,8 @@ import { ReviewsComponent } from './Components/reviews/reviews.component'
     ProductListComponent,
     BannerComponent,
     ReviewsComponent,
+    CartComponent,
+    HomeComponent,
     
   ],
   imports: [
