@@ -5,6 +5,7 @@ import { CartComponent } from './Components/cart/cart.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 
 const routes: Routes = [
+  {path:'' , component: HomeComponent},
   {path:'home' , component: HomeComponent},
   {path:'cart', component: CartComponent},
   {path:'**' , component: NotFoundComponent}
