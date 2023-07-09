@@ -21,4 +21,9 @@ export class ProductsService {
   GetProductoById(id : number){
     return this.http.get<IProduct>(this.baseUrl + 'api/product/' + id);
   }
+
+  //function to get the products of the given category from the API
+  GetAllProductsByCategory(categoryId : number){
+    return  this.http.get<IProduct[]>(this.baseUrl + 'api/ProductsOnCategory/' + categoryId);
+  }
 }

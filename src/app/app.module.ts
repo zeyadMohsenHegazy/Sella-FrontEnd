@@ -11,7 +11,8 @@ import { ProductListComponent } from './Components/product-list/product-list.com
 import { BannerComponent } from './Components/banner/banner.component';
 import { ReviewsComponent } from './Components/reviews/reviews.component';
 import { CartComponent } from './Components/cart/cart.component';
-import { HomeComponent } from './Components/home/home.component'
+import { HomeComponent } from './Components/home/home.component';
+import { CategoryComponent } from './Components/category/category.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { HomeComponent } from './Components/home/home.component'
     ReviewsComponent,
     CartComponent,
     HomeComponent,
+    CategoryComponent,
     
   ],
   imports: [
