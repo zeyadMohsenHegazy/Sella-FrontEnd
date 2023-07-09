@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/Model/IProduct';
-import { ICategory } from 'src/app/Model/icategory';
 import { ProductsService } from '../../Services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -13,7 +12,6 @@ import { Location } from '@angular/common';
 export class ProductDetailsComponent implements OnInit {
   constructor(private productService: ProductsService,
     private route: ActivatedRoute,
-    private router: Router,
     private location: Location) { }
   
     Product: IProduct = {
