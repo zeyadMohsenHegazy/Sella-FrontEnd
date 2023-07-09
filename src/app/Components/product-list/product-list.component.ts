@@ -31,4 +31,8 @@ export class ProductListComponent implements OnInit {
   onBack() {
     this.router.navigate(['/home']);
   }
+
+  addToCart(){}
+
+  viewDetails(){}
 }

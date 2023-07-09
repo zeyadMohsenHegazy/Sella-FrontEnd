@@ -1,4 +1,4 @@
-<table class="table table-success table-hover w-100">
+<!-- <table class="table table-success table-hover w-100">
     <thead>
   <tr>
     <th>id</th>
@@ -17,4 +17,24 @@
     <td>{{P.color}}</td>
   </tr>
 </tbody>
-</table>
+</table> -->
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let product of Products">
+      <div class="card h-100">
+         <!-- <img class="card-img-top" src="{{product.imageUrl}}" alt="{{product.productName}}"> -->
+         <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="{{product.productName}}">
+        <div class="card-body">
+          <h5 class="card-title">{{product.productName}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          <h6 class="card-subtitle mb-2 text-muted">{{product.price | currency:'USD':true}}</h6>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-primary m-2" (click)="addToCart()">Add to Cart</button>
+          <button class="btn btn-secondary m-2" (click)="viewDetails()">View Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
