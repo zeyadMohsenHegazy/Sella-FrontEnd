@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IProduct } from '../Model/IProduct';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -26,4 +26,6 @@ export class ProductsService {
   GetAllProductsByCategory(categoryId : number){
     return  this.http.get<IProduct[]>(this.baseUrl + 'api/ProductsOnCategory/' + categoryId);
   }
+
+
 }

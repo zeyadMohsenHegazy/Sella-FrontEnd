@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductListComponent implements OnInit {
   Products: IProduct[] = [];
   filterProducts:IProduct[] =[];
- 
+
 
 
   constructor(private productService: ProductsService,
@@ -57,9 +57,10 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  addToCart(){}
 
   viewDetails(id : number){
     this.router.navigate(['/product/' + id]);
   }
+
+  addCart() {}
 }
