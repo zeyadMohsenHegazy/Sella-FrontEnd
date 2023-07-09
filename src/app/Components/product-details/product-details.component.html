@@ -1,12 +1,12 @@
-<div class="container m-5">
+<div class="container m-lg-5 mt-2 mb-2">
     <div class="row justify-content-center align-content-center">
-        <div class="col-3">
+        <div class="col-lg-3 col-md-4 col-sm-6">
             <img class="w-100" src="../../../assets/Images/category/bedRoom.jpg" alt="{{Product.productName}}">
         </div>
-        <div class="col-3 ">
+        <div class="col-lg-4 col-md-6 col-sm-6 mt-auto mb-auto ">
             <table class="table table-hover">
                 <tr>
-                    <td>Product Name :</td>
+                    <td>Product Name:</td>
                     <td>{{Product.productName}}</td>
                 </tr>
                 <tr>
@@ -19,12 +19,11 @@
                 </tr>
                 <tr>
                     <td>Dimensions :</td>
-                    <td>{{Product.length}} .. {{Product.width}} .. {{Product.height}}</td>
-                    <td></td>
+                    <td>{{Product.length}}CM - {{Product.width}}CM - {{Product.height}}CM</td>
                 </tr>
                 <tr>
                     <td>Price :</td>
-                    <td>{{Product.price | currency}} </td>
+                    <td>{{Product.price | currency:'USD':'symbol'}}</td>
                 </tr>   
             </table>
             <button class="btn btn-info" (click)="goBack()">Go Back</button>

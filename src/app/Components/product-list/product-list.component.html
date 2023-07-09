@@ -28,9 +28,9 @@
         <div class="card-body">
           <h5 class="card-title">{{product.productName}}</h5>
           <p class="card-text">{{product.description}}</p>
-          <h6 class="card-subtitle mb-2 text-muted">{{product.price | currency:'USD':true}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">{{product.price | currency:'USD':'symbol'}}</h6>
         </div>
-        <div class="card-footer text-center">
+        <div class="card-footer text-center btn-group">
           <button class="btn btn-primary m-2" (click)="addToCart()">Add to Cart</button>
           <button class="btn btn-secondary m-2" (click)="viewDetails(product.productID)">View Details</button>
         </div>
