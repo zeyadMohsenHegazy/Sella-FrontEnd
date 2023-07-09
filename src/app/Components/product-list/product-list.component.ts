@@ -34,5 +34,7 @@ export class ProductListComponent implements OnInit {
 
   addToCart(){}
 
-  viewDetails(){}
+  viewDetails(id : number){
+    this.router.navigate(['/product/' + id]);
+  }
 }

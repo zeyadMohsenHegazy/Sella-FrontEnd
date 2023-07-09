@@ -4,12 +4,14 @@ import { HomeComponent } from './Components/home/home.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { ProductListComponent } from './Components/product-list/product-list.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 const routes: Routes = [
   {path:'' , component: HomeComponent},
   {path:'home' , component: HomeComponent},
   {path:'cart', component: CartComponent},
   {path:'category/:id', component:ProductListComponent},
+  {path: 'product/:id', component: ProductDetailsComponent},
   {path:'**' , component: NotFoundComponent}
 ];
 

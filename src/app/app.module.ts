@@ -12,7 +12,8 @@ import { BannerComponent } from './Components/banner/banner.component';
 import { ReviewsComponent } from './Components/reviews/reviews.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { HomeComponent } from './Components/home/home.component';
-import { CategoryComponent } from './Components/category/category.component'
+import { CategoryComponent } from './Components/category/category.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { CategoryComponent } from './Components/category/category.component'
     CartComponent,
     HomeComponent,
     CategoryComponent,
+    ProductDetailsComponent,
     
   ],
   imports: [

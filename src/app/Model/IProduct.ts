@@ -11,5 +11,4 @@ export interface IProduct {
     width : number,
     height : number,
     categoryID : number,
-    Category : ICategory,
 }
