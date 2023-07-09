@@ -10,24 +10,49 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
   Products: IProduct[] = [];
+  filterProducts:IProduct[] =[];
+ 
+
 
   constructor(private productService: ProductsService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) { 
+      this.listFilter="";
+    }
+//zeyad
+    ngOnInit(): void {
+      const id = Number(this.route.snapshot.paramMap.get('id'));
+  
+      this.productService.GetAllProductsByCategory(id).subscribe({
+        next: (products) => {
+          this.Products = products;
+          this.filterProducts = this.Products;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+    }
+    private _listFilter:string = "";
+    public get listFilter():string
+    {
+      return this._listFilter;
+    }
+    public set listFilter(value:string)
+    {
+      this._listFilter = value;
+      console.log(value);
+      this.filterProducts = this.performFilter(value);
+    }
+    performFilter(filterBy:string) : IProduct[]
+    {
+      filterBy = filterBy.toLocaleLowerCase();
+      return this.Products.filter((product:IProduct)=>
+        product.productName.includes(filterBy)
+      );
+    }
 
-
-  ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-
-    this.productService.GetAllProductsByCategory(id).subscribe({
-      next: (products) => {
-        this.Products = products;
-      },
-      error: (error) => {
-        console.log(error);
-      }
-    })
-  }
+  
   onBack() {
     this.router.navigate(['/home']);
   }

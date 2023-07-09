@@ -18,13 +18,19 @@
   </tr>
 </tbody>
 </table> -->
+<div class="row">
+  <div class="col-12 text-center mt-2">
+    <label class="h3 text-black m-1">Search By</label>
+    <input class="form-control w-25 d-inline rounded-2 m-1" type="text" placeholder="Search..." [(ngModel)]="listFilter">
+  </div>
+</div>
 
 <div class="container mt-3">
   <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let product of Products">
+    <div class="col-md-4 mb-4" *ngFor="let product of filterProducts">
       <div class="card h-100">
-         <!-- <img class="card-img-top" src="{{product.imageUrl}}" alt="{{product.productName}}"> -->
-         <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="{{product.productName}}">
+        <!-- <img class="card-img-top" src="{{product.imageUrl}}" alt="{{product.productName}}"> -->
+        <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="{{product.productName}}">
         <div class="card-body">
           <h5 class="card-title">{{product.productName}}</h5>
           <p class="card-text">{{product.description}}</p>
