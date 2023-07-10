@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/Model/IProduct';
 import { ProductsService } from '../../Services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/Services/cart.service';
+import { ICart } from 'src/app/Model/icart';
+import { CartDetialsService } from 'src/app/Services/cart-detials.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,12 +14,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductListComponent implements OnInit {
   Products: IProduct[] = [];
   filterProducts:IProduct[] =[];
-
+  data : ICart =  {CartID:0,Quantity : 0 , SubTotal : 0 , CustomerID:2} ;
 
 
   constructor(private productService: ProductsService,
     private route: ActivatedRoute,
-    private router: Router) { 
+    private router: Router , private cartserv : CartService , private serve : CartDetialsService) { 
       this.listFilter="";
     }
 //zeyad
@@ -32,6 +35,11 @@ export class ProductListComponent implements OnInit {
           console.log(error);
         }
       })
+
+      this.filterProducts.forEach((a : any) => {
+       Object.assign(a,{Quantity:1,total:a.total})
+      })
+      
     }
     private _listFilter:string = "";
     public get listFilter():string
@@ -62,5 +70,19 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/product/' + id]);
   }
 
-  addCart() {}
+  // addCart() {
+  //   this.cartserv.addCart(this.data).subscribe(response => {
+  //     console.log(response);
+  //   }, error => {
+  //     console.error(error);
+  //   });
+  // }
+
+
+  addtocart(item : any)
+  {
+    this.serve.addtocart(item);    
+  }
+
+
 }
