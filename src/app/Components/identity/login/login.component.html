@@ -1,1 +1,51 @@
-<p>login works!</p>
+<div class="container">
+    <div class="container square-box d-flex justify-content-center">
+      <div>
+        <img
+          src="../assets/images/myjumia-top-logo.png"
+          class="card-img-top my-5"
+          style="width: 8rem !important;"
+        />
+      </div>
+    </div>
+  
+    <div class="row pt-5 mb-5">
+      <div class="col-md-6 mx-auto">
+        <div class="card-rounded-0">
+          <div class="card-header">
+            <div class="card-body">
+              <form class="form">
+                <div class="form-group">
+                  <label for="">Email</label>
+                  <input
+                    [(ngModel)]="loginuser.email"
+                    name="email"
+                    type="email"
+                    class="form-control rounded-0"
+                    placeholder="email@example.com"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="">Password</label>
+                  <input
+                    type="password"
+                    [(ngModel)]="loginuser.password"
+                    name="Password"
+                    class="form-control rounded-0"
+                    placeholder="Password"
+                  />
+                </div>
+                <button
+                  (click)="login()"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Login
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

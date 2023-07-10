@@ -1,4 +1,5 @@
 export interface IToken {
     token : string,
-    result : boolean
+    result : boolean,
+    error : any
 }

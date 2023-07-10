@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './Components/Footer/footer.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ProductListComponent } from './Components/product-list/product-list.component';
 import { BannerComponent } from './Components/banner/banner.component';
 import { ReviewsComponent } from './Components/reviews/reviews.component';
@@ -14,7 +14,8 @@ import { CartComponent } from './Components/cart/cart.component';
 import { HomeComponent } from './Components/home/home.component';
 import { CategoryComponent } from './Components/category/category.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component'
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationInterceptor } from './Services/interceptor';
 
 @NgModule({
   declarations: [
@@ -28,16 +29,20 @@ import { FormsModule } from '@angular/forms';
     CartComponent,
     HomeComponent,
     CategoryComponent,
-    ProductDetailsComponent,
-    
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthenticationInterceptor,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
