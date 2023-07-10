@@ -1,0 +1,18 @@
+.Headers:hover {
+  color: #aba2fd !important;
+  text-decoration: underline;
+  font-size: 1.1em;
+}
+.cart{
+  margin-left: .5em;
+}
+i:hover{
+  color: #aba2fd !important;
+}
+.user{
+  margin-left: 1em;
+  margin-right: 1em;
+}
+i{
+  color: #ffffff !important;
+}

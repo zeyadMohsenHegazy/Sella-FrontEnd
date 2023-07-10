@@ -27,17 +27,17 @@
 
 <div class="container mt-3">
   <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let product of filterProducts">
+    <div class="col-md-3 mb-2" *ngFor="let product of filterProducts">
       <div class="card h-100">
         <!-- <img class="card-img-top" src="{{product.imageUrl}}" alt="{{product.productName}}"> -->
         <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="{{product.productName}}">
         <div class="card-body">
           <h5 class="card-title">{{product.productName}}</h5>
           <p class="card-text">{{product.description}}</p>
-          <h6 class="card-subtitle mb-2 text-muted">{{product.price | currency:'USD':'symbol'}}</h6>
+          <h6 class="card-subtitle text-muted">{{product.price | currency:'USD':'symbol'}}</h6>
         </div>
         <div class="card-footer text-center btn-group">
-          <button class="btn btn-primary m-2" (click)="addCart()">Add to Cart</button>
+          <button class="btn btn-primary m-2" (click)="addtocart(product)">Add to Cart</button>
           <button class="btn btn-secondary m-2" (click)="viewDetails(product.productID)">View Details</button>
         </div>
       </div>

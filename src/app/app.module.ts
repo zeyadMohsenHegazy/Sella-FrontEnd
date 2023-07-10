@@ -15,6 +15,8 @@ import { HomeComponent } from './Components/home/home.component';
 import { CategoryComponent } from './Components/category/category.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { AboutUSComponent } from './Components/about-us/about-us.component';
+import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { AuthenticationInterceptor } from './Services/interceptor';
 
 @NgModule({
@@ -29,7 +31,8 @@ import { AuthenticationInterceptor } from './Services/interceptor';
     CartComponent,
     HomeComponent,
     CategoryComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    
   ],
   imports: [
     BrowserModule,
