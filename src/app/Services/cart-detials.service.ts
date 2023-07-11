@@ -10,53 +10,73 @@ import { IProduct } from '../Model/IProduct';
 })
 export class CartDetialsService {
 
-  public cartItemList : any = [];
+  public cartItemList: any = [];
   public productList = new BehaviorSubject<any>([]);
 
-  constructor(){}
+  constructor() { }
 
-  getProducts()
-  {
+  getProducts() {
+    let ReturnData = [];
+    let Loc = localStorage.getItem('data');
+    if (Loc) {
+      ReturnData = JSON.parse(Loc);
+      this.productList.next(ReturnData);
+    }
+    console.log("KKKK :" + JSON.stringify(ReturnData));
     return this.productList.asObservable();
+
   }
 
-  setProducts(product : any)
-  {
+  setProducts(product: any) {
     this.cartItemList.push(...product);
     this.productList.next(product);
+
   }
 
-  addtocart(product : any)
-  {
+  addtocart(product: any) {
+    let CartData = [];
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
+
+    localStorage.setItem('data', JSON.stringify(this.productList));
+    // let loc = localStorage.getItem('data');
+    // if(!loc)
+    // {
+    //   localStorage.setItem('data',JSON.stringify(this.productList));
+    // }
+    // else
+    // {
+    //   CartData = JSON.parse(loc);
+    //   CartData.push(this.cartItemList);
+    //  // localStorage.removeItem('data');
+    //  localStorage.clear();
+
+    //   localStorage.setItem('data',JSON.stringify(CartData));
+    // }
+
     this.getTotalPrice();
     console.log(this.cartItemList);
   }
 
-  getTotalPrice() : number
-  {
+  getTotalPrice(): number {
     let grandtotal = 0;
-    this.cartItemList.map((a:any) => {
+    this.cartItemList.map((a: any) => {
       grandtotal += a.price;
     })
     return grandtotal;
   }
 
-  removeCartItem(product : any)
-  {
+  removeCartItem(product: any) {
     let grandtotal = 0;
-    this.cartItemList.map((a:any , index:any) => {
-      if(product.id === a.id)
-      {
-        this.cartItemList.splice(index,1);
+    this.cartItemList.map((a: any, index: any) => {
+      if (product.id === a.id) {
+        this.cartItemList.splice(index, 1);
       }
     })
     this.productList.next(this.cartItemList);
   }
 
-  removeAllcart()
-  {
+  removeAllcart() {
     this.cartItemList = [];
     this.productList.next(this.cartItemList);
   }
