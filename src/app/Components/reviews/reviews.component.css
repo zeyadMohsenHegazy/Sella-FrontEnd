@@ -96,7 +96,7 @@ h2 {
 }
 
 .cards::-webkit-scrollbar-thumb {
-  background: #c00424;
+  background: black;
 }
 
 .cards::-webkit-scrollbar-track {
