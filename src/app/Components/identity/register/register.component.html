@@ -1,63 +1,100 @@
 <div class="container">
-    <div class="container square-box d-flex justify-content-center">
-      <div>
-        <img
-          src="../assets/images/myjumia-top-logo.png"
-          class="card-img-top my-5"
-          style="width: 8rem !important;"
-        />
-      </div>
-    </div>
-  
-    <div class="row pt-5 mb-5">
-      <div class="col-md-6 mx-auto">
-        <div class="card-rounded-0">
-          <div class="card-header">
-            <div class="card-body">
-              <form class="form">
-                <div class="form-group">
-                  <label for="">Email</label>
-                  <input
-                    [(ngModel)]="user.email"
-                    name="email"
-                    type="email"
-                    class="form-control rounded-0"
-                    placeholder="example@example.com"
+  <div class="row mb-2">
+    <div class="col-md-4 mx-auto">
+      <div class="card rounded-2 mb-0">
+        <div class="justify-content-center">
+          <div class="mt-0 p-0">
+            <img src="../../../../assets/Images/Logo/sellaLogo.jpg" class="card-img-top w-100" alt="" />
+          </div>
+        </div>
+        <div class="card-header mt-0">
+          <div class="card-body">
+            <form class="form" [formGroup]="RegisterForm">
+              <div class="form-group">
+                <label for="FirstName">First Name</label>
+                <input id="FirstName"
+                 name="FirstName" 
+                 type="text" 
+                 class="form-control rounded-2" 
+                 placeholder="zeyad"
+                 formControlName="FirstName"
+                 [class.error]="RegisterForm.controls['FirstName'].dirty && RegisterForm.hasError('required', 'FirstName')" />
+                <small class="text-danger" *ngIf="
+                    RegisterForm.controls['FirstName'].dirty &&
+                    RegisterForm.hasError('required', 'FirstName')
+                  ">
+                  *First Name is Required!
+                </small>
+              </div>
+              <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <input id="LastName" 
+                name="LastName" 
+                type="text" 
+                class="form-control rounded-2" 
+                placeholder="mohsen"
+                formControlName="LastName" 
+                [class.error]="RegisterForm.controls['LastName'].dirty && RegisterForm.hasError('required', 'LastName')" />
+                <small class="text-danger" *ngIf="
+                    RegisterForm.controls['LastName'].dirty &&
+                    RegisterForm.hasError('required', 'LastName')
+                  ">
+                  *Last Name is Required!
+                </small>
+              </div>
+              <div class="form-group">
+                <label for="Email">Email</label>
+                <input
+                  id="Email"
+                  name="Email"
+                  type="Email"
+                  class="form-control rounded-2"
+                  placeholder="zeyadmohsen1999@gmail.com"
+                  formControlName="Email"
+                  [class.error]="RegisterForm.controls['Email'].dirty && RegisterForm.hasError('required','Email')"
+                />
+              </div>
+              <small *ngIf="RegisterForm.controls['Email'].dirty && RegisterForm.hasError('required','Email')"   class="text-danger">*Email is Required!</small>
+              <div class="form-group">
+                <label for="UserName">User Name</label>
+                <input id="UserName" name="UserName" type="text" class="form-control rounded-2" placeholder="zeyad24"
+                  formControlName="UserName" 
+                  [class.error]="RegisterForm.controls['UserName'].dirty && RegisterForm.hasError('required','UserName')"
                   />
-                </div>
-                
-                <div class="form-group">
-                  <label for="">user name</label>
-                  <input
-                    [(ngModel)]="user.name"
-                    name="userName"
-                    class="form-control rounded-0"
-                    placeholder="Name"
-                  />
-                </div>
+              </div>
+              <small class="text-danger" *ngIf="
+                    RegisterForm.controls['UserName'].dirty &&
+                    RegisterForm.hasError('required', 'UserName')
+                  ">
+                  *User Name is Required!
+                </small>
+              <div class="form-group">
+                <label for="Password">Password</label>
+                <input id="Password" type="Password" name="Password" class="form-control rounded-2"
+                  placeholder="Password" formControlName="Password"
+                  [class.error]="RegisterForm.controls['Password'].dirty && RegisterForm.hasError('required','Password')"
 
-                <div class="form-group">
-                  <label for="">Password</label>
-                  <input
-                    type="password"
-                    [(ngModel)]="user.password"
-                    name="Password"
-                    class="form-control rounded-0"
-                    placeholder="Password"
                   />
-                </div>
-                <button
-                  (click)="register()"
-                  type="button"
-                  class="btn btn-primary"
-                >
-                  register
-                </button>
-              </form>
-            </div>
+              </div>
+              <small class="text-danger" *ngIf="
+              RegisterForm.controls['Password'].dirty &&
+              RegisterForm.hasError('required', 'Password')
+            ">
+            *Password is Required!
+          </small>
+              <button type="submit" class="btn btn-dark w-100 mt-3" (click)="register()">
+                Sign UP
+              </button>
+            </form>
+            <ul class="list-unstyled">
+              <li>
+                Already have Account
+                <a routerLink="/login" class="link-dark"> Login </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+</div>

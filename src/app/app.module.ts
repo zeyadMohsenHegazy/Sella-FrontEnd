@@ -18,6 +18,8 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AboutUSComponent } from './Components/about-us/about-us.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { AuthenticationInterceptor } from './Services/interceptor';
+import { LoginComponent } from './Components/identity/login/login.component';
+import { RegisterComponent } from './Components/identity/register/register.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,10 @@ import { AuthenticationInterceptor } from './Services/interceptor';
     HomeComponent,
     CategoryComponent,
     ProductDetailsComponent,
-    
+    ContactUsComponent,
+    AboutUSComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
