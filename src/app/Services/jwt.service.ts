@@ -9,15 +9,15 @@ import { IToken } from '../Model/itoken';
   providedIn: 'root'
 })
 export class JWTService {
-  RegisterUrl = 'https://localhost:7049/api/AuthMangment/Register';
-  LoginUrl = 'https://localhost:7049/api/AuthMangment/Login';
+  RegisterUrl = 'http://localhost:49182/Register/';
+  LoginUrl = 'http://localhost:49182/Login/';
   constructor(private http:HttpClient) { }
 
-  register(user :IRegister) :Observable<IToken>{
-    return this.http.post<IToken>(this.RegisterUrl,user);
-  }
+ Login(UserObj :any){
+    return this.http.post<any>(`${this.LoginUrl}`,UserObj);
+ }
 
-  login(user :ILogin) :Observable<IToken>{
-    return this.http.post<IToken>(this.LoginUrl,user);
-  }
+ Register(UserObj :any){
+  return this.http.post<any>(`${this.RegisterUrl}`,UserObj);
+ }
 }

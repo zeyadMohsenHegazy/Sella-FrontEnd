@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IRegister } from 'src/app/Model/iregister';
 import { IToken } from 'src/app/Model/itoken';
 import { JWTService } from 'src/app/Services/jwt.service';
@@ -13,7 +14,7 @@ import { JWTService } from 'src/app/Services/jwt.service';
 export class RegisterComponent implements OnInit {
 
   RegisterForm! : FormGroup;
-  constructor(private fb: FormBuilder , private serv : JWTService){}
+  constructor(private fb: FormBuilder , private auth : JWTService, private router: Router){}
   ngOnInit(): void {
     this.RegisterForm = this.fb.group({
       FirstName: ['',Validators.required],
@@ -24,37 +25,28 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  user : IRegister ={
-    name:'',
-    email:'',
-    password:''
-  }
 
-  Jwttoken : IToken ={
-    token : '',
-    result :true,
-    error : ''
-  }
-
-  register() {
+  Register() {
     if(this.RegisterForm.valid){
-      console.log(this.RegisterForm.value);
+      this.auth.Register(this.RegisterForm.value)
+      .subscribe({
+        next : (value)=>{
+          alert(value.message);
+          this.RegisterForm.reset();
+          this.router.navigate(['login']);
+        },
+        error :(err)=>{
+          alert(err?.error.message)
+        }
+      })
     }
     else{
       this.ValidateFormFileds(this.RegisterForm);
       alert("Login Form is Invalid :(");
     }
-    this.serv.register(this.user).subscribe({
-      next : (_token)=>{
-        this.Jwttoken = _token;
-      },
-      error : (err)=> {
-        console.log(err);
-      }
-    })
   }
 
-
+  //form validation
   private ValidateFormFileds(_FormGroup :FormGroup){
     Object.keys(_FormGroup.controls).forEach(field =>{
       const control = _FormGroup.get(field);

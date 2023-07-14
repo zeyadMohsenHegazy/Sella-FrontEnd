@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup , Validator, Validators} from '@angular/forms';
-import { ILogin } from 'src/app/Model/ilogin';
-import { IToken } from 'src/app/Model/itoken';
+import { Router } from '@angular/router';
 import { JWTService } from 'src/app/Services/jwt.service';
 
 @Component({
@@ -11,7 +10,8 @@ import { JWTService } from 'src/app/Services/jwt.service';
 })
 export class LoginComponent implements OnInit {
 loginForm! : FormGroup;
-  constructor(private serv : JWTService , private fb: FormBuilder){}
+  constructor(private fb: FormBuilder , private auth: JWTService, private router : Router){}
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       Email: ['',Validators.required],
@@ -19,24 +19,18 @@ loginForm! : FormGroup;
     })
   }
 
-  loginuser : ILogin ={
-    email : '',
-    password : ''
-  }
-
-  jwtToken : IToken = {
-    token : '',
-    result :true,
-    error : ''
-  }
-
   login(){
     if(this.loginForm.valid){
-      console.log(this.loginForm.value);
-
-      //JWT 
-      this.serv.login(this.loginuser).subscribe((jwtToken) => {
-        localStorage.setItem('jwtToken', this.jwtToken.token);
+      //send the Obj to database 
+      this.auth.Login(this.loginForm.value)
+      .subscribe({
+        next:(value)=> {
+            alert(value.message);
+            this.router.navigate(['home']);
+        },
+        error:(err) => {
+            alert(err?.error.message)
+        },
       })
     }
     else{

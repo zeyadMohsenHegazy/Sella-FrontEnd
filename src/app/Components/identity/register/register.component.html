@@ -73,7 +73,7 @@
                 <input id="Password" type="Password" name="Password" class="form-control rounded-2"
                   placeholder="Password" formControlName="Password"
                   [class.error]="RegisterForm.controls['Password'].dirty && RegisterForm.hasError('required','Password')"
-
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                   />
               </div>
               <small class="text-danger" *ngIf="
@@ -82,7 +82,7 @@
             ">
             *Password is Required!
           </small>
-              <button type="submit" class="btn btn-dark w-100 mt-3" (click)="register()">
+              <button type="submit" class="btn btn-dark w-100 mt-3" (click)="Register()">
                 Sign UP
               </button>
             </form>
