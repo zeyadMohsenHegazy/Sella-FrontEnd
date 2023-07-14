@@ -8,13 +8,15 @@ import { CartDetialsService } from 'src/app/Services/cart-detials.service';
 })
 export class HeaderComponent {
 public totalItem : number = 0 ;
+public total : any = [];
 
-constructor(private serve : CartDetialsService){}
+constructor(private serve : CartDetialsService){
+  this.total = this.serve.getCartItems();
+ this.totalItem = this.total.length;
+}
 ngOnInit()
 {
-  this.serve.getProducts().subscribe(res => {
-    this.totalItem = res.length;
-  } )
+  
 }
 
- }
+ }  

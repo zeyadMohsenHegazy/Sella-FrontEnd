@@ -13,16 +13,26 @@ export class CartDetialsService {
   public cartItemList: any = [];
   public productList = new BehaviorSubject<any>([]);
 
-  constructor() { }
+  private cartItems: any[] = [];
+
+  constructor() { 
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      this.cartItems = JSON.parse(storedCartItems);
+    }
+  }
+
+public getCartItems(): any[] {
+  return this.cartItems;
+}
+
+
+
+
+
 
   getProducts() {
-    let ReturnData = [];
-    let Loc = localStorage.getItem('data');
-    if (Loc) {
-      ReturnData = JSON.parse(Loc);
-      this.productList.next(ReturnData);
-    }
-    console.log("KKKK :" + JSON.stringify(ReturnData));
+   // return this.cartItems.asObservable();
     return this.productList.asObservable();
 
   }
@@ -30,29 +40,14 @@ export class CartDetialsService {
   setProducts(product: any) {
     this.cartItemList.push(...product);
     this.productList.next(product);
-
   }
 
   addtocart(product: any) {
-    let CartData = [];
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
 
-    localStorage.setItem('data', JSON.stringify(this.productList));
-    // let loc = localStorage.getItem('data');
-    // if(!loc)
-    // {
-    //   localStorage.setItem('data',JSON.stringify(this.productList));
-    // }
-    // else
-    // {
-    //   CartData = JSON.parse(loc);
-    //   CartData.push(this.cartItemList);
-    //  // localStorage.removeItem('data');
-    //  localStorage.clear();
-
-    //   localStorage.setItem('data',JSON.stringify(CartData));
-    // }
+    this.cartItems.push(product);
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
 
     this.getTotalPrice();
     console.log(this.cartItemList);
@@ -71,14 +66,21 @@ export class CartDetialsService {
     this.cartItemList.map((a: any, index: any) => {
       if (product.id === a.id) {
         this.cartItemList.splice(index, 1);
+        this.cartItems.splice(index, 1);
       }
     })
+    
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     this.productList.next(this.cartItemList);
+      
+      
   }
 
   removeAllcart() {
     this.cartItemList = [];
     this.productList.next(this.cartItemList);
+      this.cartItems = [];
+      localStorage.removeItem('cartItems');
   }
 
 

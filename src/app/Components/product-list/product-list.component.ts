@@ -79,33 +79,38 @@ export class ProductListComponent implements OnInit {
   // }
 
 
-  addtocart(item: any) {
-    let userId: any = 0;
-    const userDataString = localStorage.getItem('user');
+  addtocart(item: any , proid : number) {
+ console.log(proid);
+   // this.serve.addtocart(item);
 
-    if (!userDataString) {
-      // save to local storage
-     // this.serve.addtocart(item);
-      console.log("not logged");
-    }
-    else {
-      //save to database
-      if (userDataString) {
-        try {
-          const userData = JSON.parse(userDataString);
-          userId = userData.userId;
-        } catch (error) {
-          console.error('Error parsing userData:', error);
-        }
-      } else {
-        console.error('userData not found in local storage');
-      } 
-     console.log(userId);
-     console.log("logged");
-     console.log(userDataString);
-    }
+   //this.serve.additem(item);
 
-    this.serve.addtocart(item);
+    // let userId: any = 0;
+    // const userDataString = localStorage.getItem('user');
+
+    // if (!userDataString) {
+    //   // save to local storage
+    //  // this.serve.addtocart(item);
+    //   console.log("not logged");
+    // }
+    // else {
+    //   //save to database
+    //   if (userDataString) {
+    //     try {
+    //       const userData = JSON.parse(userDataString);
+    //       userId = userData.userId;
+    //     } catch (error) {
+    //       console.error('Error parsing userData:', error);
+    //     }
+    //   } else {
+    //     console.error('userData not found in local storage');
+    //   } 
+    //  console.log(userId);
+    //  console.log("logged");
+    //  console.log(userDataString);
+    // }
+
+   // this.serve.addtocart(item);
 
     // if (userId > 0) {
 
