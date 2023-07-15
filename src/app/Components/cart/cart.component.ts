@@ -18,11 +18,12 @@ export class CartComponent {
   public cartItems: any[] = [];
 
   constructor(private cartService: CartDetialsService) { 
-    this.products = this.cartService.getCartItems();
+    
   }
 
   ngOnInit() {
     this.cartService.getProducts().subscribe(res => {
+      this.products = res;
       this.grandtotal = this.cartService.getTotalPrice();
     })
 

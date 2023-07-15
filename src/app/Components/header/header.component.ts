@@ -10,7 +10,6 @@ declare var XMLHttpRequest: new() => XMLHttpRequest;
 })
 export class HeaderComponent {
 public totalItem : number = 0 ;
-public total : any = [];
 
 constructor(private serve : CartDetialsService){}
 ngOnInit()
