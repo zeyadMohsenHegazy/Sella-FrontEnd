@@ -1,4 +1,4 @@
-.selectinput{
+/* .selectinput{
     position: relative;
     padding-right:5px ;
  }
@@ -38,7 +38,7 @@
 .selectinput select:focus {
     border: 1px solid #f8982d ;
 }
- /* input phone */
+ 
 .inputbox{
     position: relative;
     width: 20vw;
@@ -108,4 +108,9 @@
     .btn-sign-in-continue{
         width: 40em !important;
     }
- }
+ } */
+
+ .error{
+    border: 3px solid #dc3545 !important;   
+    background-color: #fdf1f1 !important; 
+  }

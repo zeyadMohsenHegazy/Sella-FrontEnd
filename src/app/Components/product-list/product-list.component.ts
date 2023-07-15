@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/Services/cart.service';
 import { ICart } from 'src/app/Model/icart';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
@@ -13,6 +14,7 @@ import { CartDetialsService } from 'src/app/Services/cart-detials.service';
 })
 export class ProductListComponent implements OnInit {
   user: any[] = [{ UserID: 1, Username: 'Kero' }];
+  
   Products: IProduct[] = [];
   filterProducts: IProduct[] = [];
   data: ICart = { CartID: 0, Quantity: 0, SubTotal: 0, CustomerID: 2 };
@@ -70,61 +72,13 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/product/' + id]);
   }
 
-  // addCart() {
-  //   this.cartserv.addCart(this.data).subscribe(response => {
-  //     console.log(response);
-  //   }, error => {
-  //     console.error(error);
-  //   });
-  // }
 
 
-  addtocart(item: any) {
-    let userId: any = 0;
-    const userDataString = localStorage.getItem('user');
 
-    if (!userDataString) {
-      // save to local storage
-     // this.serve.addtocart(item);
-      console.log("not logged");
-    }
-    else {
-      //save to database
-      if (userDataString) {
-        try {
-          const userData = JSON.parse(userDataString);
-          userId = userData.userId;
-        } catch (error) {
-          console.error('Error parsing userData:', error);
-        }
-      } else {
-        console.error('userData not found in local storage');
-      } 
-     console.log(userId);
-     console.log("logged");
-     console.log(userDataString);
-    }
-
-    this.serve.addtocart(item);
-
-    // if (userId > 0) {
-
-    //   const cart: ICart = {
-    //     CartID: 1,
-    //     Quantity: item.Quantity,
-    //     SubTotal: item.price,
-    //     CustomerID: userId
-    //   };
-
-    //   this.cartserv.addCart(cart).subscribe(response => {
-    //     console.log(response);
-    //   }, error => {
-    //     console.error(error);
-    //   });
-
-    // }
-    // console.log(userId);
-    
+  addtocart(item: any, proid: number) {
+    console.log(item);
+    console.log(proid);
+    this.serve.addtocart(item); 
   }
 
 

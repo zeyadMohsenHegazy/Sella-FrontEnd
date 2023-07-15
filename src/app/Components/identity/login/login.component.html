@@ -1,51 +1,64 @@
 <div class="container">
-    <div class="container square-box d-flex justify-content-center">
-      <div>
-        <img
-          src="../assets/images/myjumia-top-logo.png"
-          class="card-img-top my-5"
-          style="width: 8rem !important;"
-        />
-      </div>
-    </div>
-  
-    <div class="row pt-5 mb-5">
-      <div class="col-md-6 mx-auto">
-        <div class="card-rounded-0">
-          <div class="card-header">
-            <div class="card-body">
-              <form class="form">
-                <div class="form-group">
-                  <label for="">Email</label>
-                  <input
-                    [(ngModel)]="loginuser.email"
-                    name="email"
-                    type="email"
-                    class="form-control rounded-0"
-                    placeholder="email@example.com"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="">Password</label>
-                  <input
-                    type="password"
-                    [(ngModel)]="loginuser.password"
-                    name="Password"
-                    class="form-control rounded-0"
-                    placeholder="Password"
-                  />
-                </div>
-                <button
-                  (click)="login()"
-                  type="button"
-                  class="btn btn-primary"
-                >
-                  Login
-                </button>
-              </form>
-            </div>
+  <div class="row mb-3">
+    <div class="col-md-4 mx-auto">
+      <div class="card rounded-2">
+        <div class="d-flex justify-content-center">
+          <div class="mt-0 p-0">
+            <img
+              src="../../../../assets/Images/Logo/sellaLogo.jpg"
+              class="card-img-top w-100"
+              
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="card-header">
+          <div class="card-body">
+            <form class="form justify-content-center" [formGroup]="loginForm">
+              <div class="form-group">
+                <label for="Email">Emial</label>
+                <input
+                  id="Email"
+                  name="Email"
+                  type="Email"
+                  class="form-control rounded-2"
+                  placeholder="zeyadmohsen1999@gmail.com"
+                  formControlName="Email"
+                  [class.error]="loginForm.controls['Email'].dirty && loginForm.hasError('required','Email')"
+                />
+              </div>
+              <small *ngIf="loginForm.controls['Email'].dirty && loginForm.hasError('required','Email')"   class="text-danger">*Email is Required!</small>
+              <div class="form-group">
+                <label for="Password">Password</label>
+                <input
+                  id="Password"
+                  type="Password"
+                  name="Password"
+                  class="form-control rounded-2"
+                  placeholder="Password"
+                  formControlName="Password"
+                  [class.error]="loginForm.controls['Password'].dirty && loginForm.hasError('required','Password')"
+                />
+              </div>
+              <small *ngIf="loginForm.controls['Password'].dirty && loginForm.hasError('required','Password')"  class="text-danger">*Password is Required!</small>
+              <div class="form mt-2">
+                <a class="text-primary" href="#">Forget Password?</a>
+              </div>
+              <button (click)="login()" type="submit" class="btn btn-dark w-100 mt-4">
+                Login
+              </button>
+            </form>
+            <ul class="list-unstyled mb-3">
+              <li>
+                If you don't have acount 
+                <a routerLink ="/register" class="link-dark">
+                  Register Now
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

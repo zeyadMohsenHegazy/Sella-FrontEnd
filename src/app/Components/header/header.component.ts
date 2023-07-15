@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
 
+declare var XMLHttpRequest: new() => XMLHttpRequest;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
