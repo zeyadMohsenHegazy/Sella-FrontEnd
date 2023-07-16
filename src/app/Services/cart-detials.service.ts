@@ -9,31 +9,21 @@ import { IProduct } from '../Model/IProduct';
   providedIn: 'root'
 })
 export class CartDetialsService {
-
-  public cartItemList: any = [];
+  CartProducts: any[] = [];
+ 
+  public cartItemList : any = [];
   public productList = new BehaviorSubject<any>([]);
 
-  private cartItems: any[] = [];
-
   constructor() { 
-    const storedCartItems = localStorage.getItem('cartItems');
-    if (storedCartItems) {
-      this.cartItems = JSON.parse(storedCartItems);
     }
-  }
-
-public getCartItems(): any[] {
-  return this.cartItems;
-}
-
-
-
-
-
+  
 
   getProducts() {
-   // return this.cartItems.asObservable();
+    this.CartProducts = JSON.parse(localStorage.getItem('Cart') || '[]');
+    this.productList.next(this.CartProducts);
+    console.log(this.CartProducts);
     return this.productList.asObservable();
+    
 
   }
 
@@ -43,19 +33,38 @@ public getCartItems(): any[] {
   }
 
   addtocart(product: any) {
+    
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
-
-    this.cartItems.push(product);
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    if('Cart' in localStorage)
+    {
+      this.CartProducts = JSON.parse(localStorage.getItem('Cart')!);
+      
+      let exist = this.CartProducts.find(ww => ww.productID == product.productID)
+      if(exist)
+      {
+        alert("Product Already Exist in your Cart");
+      }
+      else
+      {
+      this.CartProducts.push(product);
+      localStorage.setItem("Cart",JSON.stringify(this.CartProducts));
+      }
+     
+    }else
+    {
+      this.CartProducts.push(product);
+      localStorage.setItem("Cart",JSON.stringify(this.CartProducts));
+    }
+   
 
     this.getTotalPrice();
-    console.log(this.cartItemList);
+    
   }
 
   getTotalPrice(): number {
     let grandtotal = 0;
-    this.cartItemList.map((a: any) => {
+    this.CartProducts.map((a: any) => {
       grandtotal += a.price;
     })
     return grandtotal;
@@ -63,41 +72,25 @@ public getCartItems(): any[] {
 
   removeCartItem(product: any) {
     let grandtotal = 0;
-    this.cartItemList.map((a: any, index: any) => {
-      if (product.id === a.id) {
-        this.cartItemList.splice(index, 1);
-        this.cartItems.splice(index, 1);
+    this.CartProducts.map((a: any, index: any) => {
+      if (product.productID === a.productID) {
+        this.CartProducts.splice(index, 1);
+        localStorage.setItem("Cart",JSON.stringify(this.CartProducts));
       }
     })
     
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
-    this.productList.next(this.cartItemList);
-      
+    
       
   }
 
   removeAllcart() {
     this.cartItemList = [];
     this.productList.next(this.cartItemList);
-      this.cartItems = [];
-      localStorage.removeItem('cartItems');
+    localStorage.removeItem('Cart');
   }
 
 
 
-  // apiUrl = 'http://localhost:49182/api';
-  // constructor(private http: HttpClient) { }
 
-  // getCartByUser(id: number): Observable<ICart[]> {
-  //   return this.http.get<ICart[]>(`${this.apiUrl}/Cart/${id}`);
-  // }
-
-  // getProductsByCartId(id: number): Observable<ICartProducts[]> {
-  //   return this.http.get<ICartProducts[]>(`${this.apiUrl}/ProductsCart/${id}`);
-  // }
-
-  // getProductById(id: number): Observable<IProduct[]> {
-  //   return this.http.get<IProduct[]>(`${this.apiUrl}/Product/${id}`);
-  // }
 
 }

@@ -30,6 +30,7 @@ loginForm! : FormGroup;
             this.auth.StoreUserId(value.user)
             this.toastr.success(value.message , 'Log in Success');
             this.router.navigate(['home']);
+            // get or create user cart id , user id 
         },
         error:(err) => {
             this.toastr.error(err?.error.message, 'Error :(');   
