@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup , Validator, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { JWTService } from 'src/app/Services/jwt.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,10 @@ import { JWTService } from 'src/app/Services/jwt.service';
 })
 export class LoginComponent implements OnInit {
 loginForm! : FormGroup;
-  constructor(private fb: FormBuilder , private auth: JWTService, private router : Router){}
+  constructor(private fb: FormBuilder , private auth: JWTService, private router : Router , private toastr: ToastrService){}
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+      this.loginForm = this.fb.group({
       Email: ['',Validators.required],
       Password: ['',Validators.required]
     })
@@ -25,17 +26,19 @@ loginForm! : FormGroup;
       this.auth.Login(this.loginForm.value)
       .subscribe({
         next:(value)=> {
-            alert(value.message);
+            this.auth.StoreToken(value.token)
+            this.auth.StoreUserId(value.user)
+            this.toastr.success(value.message , 'Log in Success');
             this.router.navigate(['home']);
         },
         error:(err) => {
-            alert(err?.error.message)
+            this.toastr.error(err?.error.message, 'Error :(');   
         },
       })
     }
     else{
       this.ValidateFormFileds(this.loginForm);
-      alert("Login Form is Invalid :(");
+      this.toastr.error('Login Form is Invalid');   
     }
    
   }

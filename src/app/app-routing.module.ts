@@ -9,12 +9,13 @@ import { AboutUSComponent } from './Components/about-us/about-us.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
 import { LoginComponent } from './Components/identity/login/login.component';
 import { RegisterComponent } from './Components/identity/register/register.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 
 const routes: Routes = [
   {path:'' , component: HomeComponent},
   {path:'home' , component: HomeComponent},
-  {path:'cart', component: CartComponent},
+  {path:'cart', component: CartComponent , canActivate:[AuthGuard]},
   {path:'category/:id', component:ProductListComponent},
   {path: 'product/:id', component: ProductDetailsComponent},
   {path: 'AboutUs', component: AboutUSComponent},

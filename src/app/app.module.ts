@@ -20,6 +20,8 @@ import { ContactUsComponent } from './Components/contact-us/contact-us.component
 import { AuthenticationInterceptor } from './Services/interceptor';
 import { LoginComponent } from './Components/identity/login/login.component';
 import { RegisterComponent } from './Components/identity/register/register.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,14 +39,17 @@ import { RegisterComponent } from './Components/identity/register/register.compo
     ContactUsComponent,
     AboutUSComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
