@@ -8,6 +8,7 @@ import { CartProductsService } from 'src/app/Services/cart-products.service';
 import { CartService } from 'src/app/Services/cart.service';
 import { JWTService } from 'src/app/Services/jwt.service';
 import { ToastrService } from 'ngx-toastr';
+import { ProductDetailsComponent } from '../../product-details/product-details.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 loginForm! : FormGroup;
-  constructor(private fb: FormBuilder , private auth: JWTService, private router : Router){}
+  constructor(private fb: FormBuilder , private toastr: ToastrService , private auth: JWTService, private router : Router , private Pcartservic : CartProductsService , private CartService : CartService){}
 
   ngOnInit(): void {
     const userData = { username: 'Kero', userId: 1 };

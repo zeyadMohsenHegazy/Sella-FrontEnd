@@ -40,6 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AboutUSComponent,
     LoginComponent,
     RegisterComponent,
+  
     
   ],
   imports: [
@@ -48,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],
