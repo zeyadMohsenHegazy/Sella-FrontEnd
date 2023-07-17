@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IRegister } from '../Model/iregister';
-import { ILogin } from '../Model/ilogin';
-import { Observable } from 'rxjs';
-import { IToken } from '../Model/itoken';
-
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt'
 @Injectable({
   providedIn: 'root'
 })
 export class JWTService {
-  RegisterUrl = 'http://localhost:49182/Register/';
-  
+  RegisterUrl = 'http://localhost:49182/Register/'; 
   LoginUrl = 'http://localhost:49182/Login/';
-  constructor(private http:HttpClient) { }
+
+  private UserPayload :any;
+  constructor(private http:HttpClient, private route:Router) {
+   this.UserPayload = this.DecodeToken();
+   }
 
  Login(UserObj :any){
     return this.http.post<any>(`${this.LoginUrl}`,UserObj);
@@ -37,4 +37,24 @@ export class JWTService {
  IsLogged():boolean{
     return !!localStorage.getItem('token');
  }
+SignOut(){
+   localStorage.removeItem('token');
+   localStorage.removeItem('UserID');
+   this.route.navigate(['home']);
+}
+
+DecodeToken(){
+   const JWT = new JwtHelperService();
+   const Token = this.GetToken()!;
+   console.log(JWT.decodeToken(Token));
+   return JWT.decodeToken(Token);
+}
+
+GetFullNameFromToken(){
+   if(this.UserPayload){
+      return this.UserPayload.unique_name;
+   }
+}
+
+
 }

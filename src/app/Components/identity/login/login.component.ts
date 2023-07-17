@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup , Validator, Validators} from '@ang
 import { Router } from '@angular/router';
 import { JWTService } from 'src/app/Services/jwt.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserStoreService } from 'src/app/Services/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 loginForm! : FormGroup;
-  constructor(private fb: FormBuilder , private auth: JWTService, private router : Router , private toastr: ToastrService){}
+  constructor(private fb: FormBuilder , 
+    private auth: JWTService, 
+    private router : Router , 
+    private toastr: ToastrService,
+    private storeToken : UserStoreService){}
 
   ngOnInit(): void {
       this.loginForm = this.fb.group({
@@ -28,6 +33,8 @@ loginForm! : FormGroup;
         next:(value)=> {
             this.auth.StoreToken(value.token)
             this.auth.StoreUserId(value.user)
+            const TokenPayload = this.auth.DecodeToken();
+            this.storeToken.SetFullNameForStore(TokenPayload.unique_name);
             this.toastr.success(value.message , 'Log in Success');
             this.router.navigate(['home']);
             // get or create user cart id , user id 
@@ -54,5 +61,9 @@ loginForm! : FormGroup;
         this.ValidateFormFileds(control)
       }
     })
+  }
+
+  SignOut(){
+    this.auth.SignOut();
   }
 }

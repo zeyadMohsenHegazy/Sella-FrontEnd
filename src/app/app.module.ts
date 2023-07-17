@@ -22,7 +22,7 @@ import { LoginComponent } from './Components/identity/login/login.component';
 import { RegisterComponent } from './Components/identity/register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: AuthenticationInterceptor,
+    useClass: TokenInterceptorInterceptor,
     multi : true
   }],
   bootstrap: [AppComponent]

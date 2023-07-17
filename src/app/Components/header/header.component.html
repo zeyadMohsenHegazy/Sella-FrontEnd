@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark m-0">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark m-0">
   <div class="container-fluid">
     <a class="navbar-brand h2 text-light" routerLink="/home">Sella</a>
     <button
@@ -37,12 +37,60 @@
             </span>
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <button class="btn btn-outline-light m-1">Login</button>
+        <li class="nav-item p-1">
+          <a routerLink="/login"><i class="fa-solid fa-xl fa-user user"></i></a>
         </li>
-        <li class="nav-item">
-          <button class="btn btn-light m-1">Register</button>
-        </li> -->
+        <li class="nav-item p-1">
+            <a (click)="showuser()" class="btn btn-info">show user</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+<div>
+  <div class="upper-nav">
+    <p> Refresh Your 
+      Home With Our Top Picks→ </p>
+  </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-white m-0">
+  <div class="container-fluid">
+    <a class="navbar-brand h2 text-dark logo" routerLink="/home">Sella</a>
+    <button
+      class="navbar-toggler text-dark"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span><i class="fa-solid fa-bars"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item m-1">
+          <a class="nav-link text-dark Headers" href="#">Home</a>
+        </li>
+        <li class="nav-item m-1">
+          <a class="nav-link text-dark Headers" href="#">Categories</a>
+        </li>
+        <li class="nav-item m-1">
+          <a class="nav-link text-dark Headers" routerLink="/AboutUs">About Us</a>
+        </li>
+        <li class="nav-item m-1">
+          <a class="nav-link text-dark Headers" routerLink="/contactUs">Contact Us</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item mt-1 p-1">
+          <a class="nav-link position-relative cart d-inline" routerLink="/cart">
+            <i class="fa fa-shopping-cart fa-xl"></i>
+            <span
+              class="position-absolute top-20 start-0 translate-middle badge rounded-pill bg-danger">
+              {{totalItem}}
+            </span>
+          </a>
+        </li>
         <li class="nav-item p-1">
           <a routerLink="/login"><i class="fa-solid fa-xl fa-user user"></i></a>
         </li>
@@ -50,3 +98,19 @@
     </div>
   </div>
 </nav>
+
+<div class="lower-nav">
+  <div class="lower-nav-child col-lg-4 col-md-3 col-sm-3 justify-content-center">
+    <i class=" fa fa-money fa-xl"></i>
+    <h6 class="p-1">Cash On Delivery</h6>
+  </div>
+  <div class="lower-nav-child col-lg-4 col-md-3 col-sm-3 justify-content-center">
+    <i class="fas fa-handshake fa-xl"></i>
+    <h6 class="p-1">Easy Installment</h6>
+  </div>
+  <div class="lower-nav-child col-lg-4 col-md-3 col-sm-3 justify-content-center">
+    <i class="fa-solid fa-arrow-right-arrow-left fa-xl"></i>
+    <h6 class="p-1">Free Return</h6>
+  </div>
+</div>
+</div>
