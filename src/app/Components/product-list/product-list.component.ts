@@ -13,7 +13,7 @@ import { JsonPipe } from '@angular/common';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  user: any[] = [{ UserID: 1, Username: 'Kero' }];
+  
   
   Products: IProduct[] = [];
   filterProducts: IProduct[] = [];
@@ -27,8 +27,7 @@ export class ProductListComponent implements OnInit {
   }
   //zeyad
   ngOnInit(): void {
-    const userData = { username: 'Kero', userId: 1 };
-    localStorage.setItem('user', JSON.stringify(userData));
+    
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.productService.GetAllProductsByCategory(id).subscribe({
