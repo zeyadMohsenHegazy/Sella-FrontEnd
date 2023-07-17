@@ -40,6 +40,7 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
     AboutUSComponent,
     LoginComponent,
     RegisterComponent,
+  
     
   ],
   imports: [
@@ -48,6 +49,7 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],
