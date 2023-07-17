@@ -13,12 +13,13 @@
               <div class="form-group">
                 <label for="FirstName">First Name</label>
                 <input id="FirstName"
-                 name="FirstName" 
-                 type="text" 
-                 class="form-control rounded-2" 
-                 placeholder="zeyad"
-                 formControlName="FirstName"
-                 [class.error]="RegisterForm.controls['FirstName'].dirty && RegisterForm.hasError('required', 'FirstName')" />
+                  name="FirstName" 
+                  type="text" 
+                  class="form-control rounded-2" 
+                  placeholder="zeyad"
+                  formControlName="FirstName"
+                  [class.error]="RegisterForm.controls['FirstName'].dirty && RegisterForm.hasError('required', 'FirstName')"
+                  (blur)="RegisterForm.controls['FirstName'].markAsTouched()" />
                 <small class="text-danger" *ngIf="
                     RegisterForm.controls['FirstName'].dirty &&
                     RegisterForm.hasError('required', 'FirstName')
@@ -34,7 +35,8 @@
                 class="form-control rounded-2" 
                 placeholder="mohsen"
                 formControlName="LastName" 
-                [class.error]="RegisterForm.controls['LastName'].dirty && RegisterForm.hasError('required', 'LastName')" />
+                [class.error]="RegisterForm.controls['LastName'].dirty && RegisterForm.hasError('required', 'LastName')" 
+                (blur)="RegisterForm.controls['LastName'].markAsTouched()"/>
                 <small class="text-danger" *ngIf="
                     RegisterForm.controls['LastName'].dirty &&
                     RegisterForm.hasError('required', 'LastName')
@@ -52,29 +54,15 @@
                   placeholder="zeyadmohsen1999@gmail.com"
                   formControlName="Email"
                   [class.error]="RegisterForm.controls['Email'].dirty && RegisterForm.hasError('required','Email')"
-                />
+                  (blur)="RegisterForm.controls['Email'].markAsTouched()"/>
               </div>
               <small *ngIf="RegisterForm.controls['Email'].dirty && RegisterForm.hasError('required','Email')"   class="text-danger">*Email is Required!</small>
-              <div class="form-group">
-                <label for="UserName">User Name</label>
-                <input id="UserName" name="UserName" type="text" class="form-control rounded-2" placeholder="zeyad24"
-                  formControlName="UserName" 
-                  [class.error]="RegisterForm.controls['UserName'].dirty && RegisterForm.hasError('required','UserName')"
-                  />
-              </div>
-              <small class="text-danger" *ngIf="
-                    RegisterForm.controls['UserName'].dirty &&
-                    RegisterForm.hasError('required', 'UserName')
-                  ">
-                  *User Name is Required!
-                </small>
               <div class="form-group">
                 <label for="Password">Password</label>
                 <input id="Password" type="Password" name="Password" class="form-control rounded-2"
                   placeholder="Password" formControlName="Password"
                   [class.error]="RegisterForm.controls['Password'].dirty && RegisterForm.hasError('required','Password')"
-                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                  />
+                  (blur)="RegisterForm.controls['Password'].markAsTouched()"/>
               </div>
               <small class="text-danger" *ngIf="
               RegisterForm.controls['Password'].dirty &&

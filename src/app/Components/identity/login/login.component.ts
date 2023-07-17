@@ -7,6 +7,7 @@ import { ICartProducts } from 'src/app/Model/icart-products';
 import { CartProductsService } from 'src/app/Services/cart-products.service';
 import { CartService } from 'src/app/Services/cart.service';
 import { JWTService } from 'src/app/Services/jwt.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { JWTService } from 'src/app/Services/jwt.service';
 })
 export class LoginComponent implements OnInit {
 loginForm! : FormGroup;
-  constructor(private fb: FormBuilder , private auth: JWTService, private router : Router ,private CartService : CartService , private Pcartservic : CartProductsService){}
+  constructor(private fb: FormBuilder , private auth: JWTService, private router : Router){}
 
   ngOnInit(): void {
     const userData = { username: 'Kero', userId: 1 };
@@ -33,19 +34,21 @@ loginForm! : FormGroup;
       this.auth.Login(this.loginForm.value)
       .subscribe({
         next:(value)=> {
-            alert(value.message);
+            this.auth.StoreToken(value.token)
+            this.auth.StoreUserId(value.user)
+            this.toastr.success(value.message , 'Log in Success');
             this.router.navigate(['home']);
             // get or create user cart id , user id 
            this.CartFun();
         },
         error:(err) => {
-            alert(err?.error.message)
+            this.toastr.error(err?.error.message, 'Error :(');   
         },
       })
     }
     else{
       this.ValidateFormFileds(this.loginForm);
-      alert("Login Form is Invalid :(");
+      this.toastr.error('Login Form is Invalid');   
     }
    
   }

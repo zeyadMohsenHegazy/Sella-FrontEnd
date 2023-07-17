@@ -10,6 +10,7 @@ import { IToken } from '../Model/itoken';
 })
 export class JWTService {
   RegisterUrl = 'http://localhost:49182/Register/';
+  
   LoginUrl = 'http://localhost:49182/Login/';
   constructor(private http:HttpClient) { }
 
@@ -19,5 +20,21 @@ export class JWTService {
 
  Register(UserObj :any){
   return this.http.post<any>(`${this.RegisterUrl}`,UserObj);
+ }
+
+
+ StoreToken(TokenValue:string){
+    localStorage.setItem('token', TokenValue);
+ }
+
+ StoreUserId(Id : string){
+    localStorage.setItem('UserID', Id);
+ }
+ GetToken(){
+  return localStorage.getItem('token');
+ }
+
+ IsLogged():boolean{
+    return !!localStorage.getItem('token');
  }
 }
