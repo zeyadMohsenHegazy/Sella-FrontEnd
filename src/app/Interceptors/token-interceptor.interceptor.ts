@@ -15,30 +15,39 @@ import { Router } from '@angular/router';
 export class TokenInterceptorInterceptor implements HttpInterceptor {
   constructor(
     private auth: JWTService,
-    private Toast: ToastrService,
-    private route: Router
+    private toast: ToastrService,
+    private router: Router
   ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const Token = this.auth.GetToken();
+    const token = this.auth.GetToken();
 
-    if (Token) {
+    if (token) {
       request = request.clone({
-        setHeaders: { Authorization: `Bearer ${Token}` },
+        setHeaders: { Authorization: `Bearer ${token}` },
       });
     }
+
     return next.handle(request).pipe(
-      catchError((err) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status == 401) {
-            this.Toast.warning('Seasion is expired .. Please Log in Again');
-            this.route.navigate(['login']);
-          }
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Something Went Wrong!';
+
+        if (error.error instanceof ErrorEvent) {
+          // Client-side error
+          errorMessage = error.error.message;
+        } else if (error.status === 401) {
+          // Unauthorized error
+          this.toast.warning('Session has expired. Please log in again.');
+          this.router.navigate(['login']);
+        } else if (error.error && error.error.message) {
+          // API error with a specific message
+          errorMessage = error.error.message;
         }
-        return throwError(() => new Error('Somethige Went Wrong !'));
+
+        return throwError(errorMessage);
       })
     );
   }

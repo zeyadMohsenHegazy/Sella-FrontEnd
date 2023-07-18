@@ -38,7 +38,7 @@ export class JWTService {
  IsLogged():boolean{
     return !!localStorage.getItem('token');
  }
- 
+
 SignOut(){
    localStorage.removeItem('token');
    localStorage.removeItem('UserID');
@@ -57,6 +57,5 @@ GetFullNameFromToken(){
       return this.UserPayload.unique_name;
    }
 }
-
 
 }
