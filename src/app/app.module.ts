@@ -53,11 +53,11 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorInterceptor,
-    multi : true
-  }],
+  providers: [],
+  //   {provide: HTTP_INTERCEPTORS,
+  //   useClass: TokenInterceptorInterceptor,
+  //   multi : true
+  // }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
