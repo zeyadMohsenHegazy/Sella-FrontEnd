@@ -30,6 +30,7 @@ export class JWTService {
  StoreUserId(Id : string){
     localStorage.setItem('UserID', Id);
  }
+
  GetToken(){
   return localStorage.getItem('token');
  }
@@ -37,6 +38,7 @@ export class JWTService {
  IsLogged():boolean{
     return !!localStorage.getItem('token');
  }
+ 
 SignOut(){
    localStorage.removeItem('token');
    localStorage.removeItem('UserID');
