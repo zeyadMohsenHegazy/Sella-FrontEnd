@@ -49,8 +49,12 @@ loginForm! : FormGroup;
             // get or create user cart id , user id 
            this.CartFun();
         },
-        error:(err) => {
-            this.toastr.error(err?.error.message, 'Error :(');   
+        error: (err) => {
+          if (err?.error?.message) {
+            this.toastr.error(err.error.message, 'Error');
+          } else {
+            this.toastr.error(err, 'Error');
+          }
         },
       })
     }
