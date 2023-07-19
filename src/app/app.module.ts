@@ -23,6 +23,7 @@ import { RegisterComponent } from './Components/identity/register/register.compo
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.interceptor';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
     AboutUSComponent,
     LoginComponent,
     RegisterComponent,
+    CheckoutComponent
   
     
   ],
@@ -49,6 +51,7 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    
     
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
