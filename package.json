@@ -23,6 +23,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.7.0",
     "ngx-bootstrap-icons": "^1.9.2",
+    "ngx-paypal": "^11.0.0",
     "ngx-toastr": "^17.0.2",
     "owl.carousel": "^2.3.4",
     "rxjs": "~7.8.0",
