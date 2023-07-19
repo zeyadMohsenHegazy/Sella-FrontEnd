@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.interceptor';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { TopPicksComponent } from './Components/top-picks/top-picks.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     AboutUSComponent,
     LoginComponent,
     RegisterComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    TopPicksComponent
   
     
   ],

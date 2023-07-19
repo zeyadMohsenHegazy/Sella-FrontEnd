@@ -11,3 +11,7 @@
       font-size: 3.5rem;
     }
   }
+
+  input:invalid {
+    border: 3px dashed rgb(215, 5, 5) !important;
+  }
