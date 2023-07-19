@@ -24,6 +24,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.interceptor';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,8 +54,7 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
-    
+    NgxPayPalModule,   
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],

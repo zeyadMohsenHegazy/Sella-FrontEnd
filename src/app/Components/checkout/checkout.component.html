@@ -32,7 +32,7 @@
                 <form class="card p-2" (submit)="applyPromoCode(promoCodeInput.value)">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Promo code" #promoCodeInput>
-                        <button type="submit" class="btn btn-secondary">Apply</button>
+                        <button type="submit" class="btn btn-secondary" [disabled]="isPromoApplied">Apply</button>
                     </div>
                 </form>
             </div>
@@ -152,10 +152,7 @@
                     <hr class="my-4">
 
                     <h4 class="mb-3">Payment</h4>
-
-
-                    <hr class="my-4">
-
+                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
 
                 </form>
             </div>
