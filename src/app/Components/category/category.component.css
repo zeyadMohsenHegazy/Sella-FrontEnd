@@ -1,9 +1,4 @@
-.div-img {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    /* padding-top: 20%; */
-}
+
 
 img {
     transition: transform 0.3s ease-in-out;

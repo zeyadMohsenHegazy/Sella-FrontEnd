@@ -47,10 +47,10 @@
     </div>
   </div>
 </nav> -->
-<div>
+<div class="Header z-3">
   <div class="upper-nav">
     <p> Refresh Your 
-      Home With Our Top Picks→ </p>
+      Home With Our <a routerLink="/products" class="PicksLink link-light text-decoration-none">Top Picks→</a> </p>
   </div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-white m-0">
   <div class="container-fluid">
@@ -72,7 +72,10 @@
           <a class="nav-link text-dark Headers" href="#">Home</a>
         </li>
         <li class="nav-item m-1">
-          <a class="nav-link text-dark Headers" href="#">Categories</a>
+          <a class="nav-link text-dark Headers" href="#categories">Categories</a>
+        </li>
+        <li class="nav-item m-1">
+          <a class="nav-link text-dark Headers" routerLink="/products">Products</a>
         </li>
         <li class="nav-item m-1">
           <a class="nav-link text-dark Headers" routerLink="/AboutUs">About Us</a>

@@ -26,6 +26,7 @@ import { TokenInterceptorInterceptor } from './Interceptors/token-interceptor.in
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { TopPicksComponent } from './Components/top-picks/top-picks.component';
+import { ProductsComponent } from './Components/products/products.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { TopPicksComponent } from './Components/top-picks/top-picks.component';
     LoginComponent,
     RegisterComponent,
     CheckoutComponent,
-    TopPicksComponent
+    TopPicksComponent,
+    ProductsComponent
   
     
   ],
