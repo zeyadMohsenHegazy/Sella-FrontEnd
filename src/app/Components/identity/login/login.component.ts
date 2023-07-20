@@ -74,9 +74,7 @@ loginForm! : FormGroup;
     })
   }
 
-  SignOut(){
-    this.auth.SignOut();
-  }
+
 
   CartFun()
   {

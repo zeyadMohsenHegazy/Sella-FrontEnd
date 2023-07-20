@@ -40,9 +40,11 @@ export class JWTService {
  }
 
 SignOut(){
-   localStorage.removeItem('token');
-   localStorage.removeItem('UserID');
+   // localStorage.removeItem('token');
+   // localStorage.removeItem('UserID');
+   localStorage.clear();
    this.route.navigate(['home']);
+   window.location.reload();
 }
 
 DecodeToken(){

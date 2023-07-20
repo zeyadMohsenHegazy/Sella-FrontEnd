@@ -12,23 +12,26 @@ declare var XMLHttpRequest: new() => XMLHttpRequest;
 })
 export class HeaderComponent {
 public totalItem : number = 0 ;
-public FullName :any;
+public FullName : any;
 constructor(private serve : CartDetialsService,private auth : JWTService ,private userStore : UserStoreService){}
+IsLogged : boolean = false;
 ngOnInit()
 {
   this.serve.getProducts().subscribe(res => {
     this.totalItem = res.length;
   })
-
+  this.FullName = this.showuser();
+  this.IsLogged = !this.auth.IsLogged();
 }
 
 showuser(){
-  
-  this.FullName = this.userStore.GetFullNameFromStore()
-  .subscribe(value =>{
-    const FullNameFromToken = this.auth.GetFullNameFromToken();
-    this.FullName = value || FullNameFromToken
-    alert(this.FullName);
-  });
+     const FullNameFromToken = this.auth.GetFullNameFromToken();
+     return FullNameFromToken;
 }
+
+SignOut(){
+  this.auth.SignOut();
+}
+
+
 }

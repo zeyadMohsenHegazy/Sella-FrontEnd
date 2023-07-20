@@ -3,7 +3,7 @@
   font-weight: bold;
 }
 .cart{
-  margin-left: .5em;
+  margin-left: 1em;
 }
 nav i:hover{
   color: #aba2fd !important;
@@ -60,4 +60,8 @@ nav{
 
 .Header{
   box-shadow: 0px 5px 20px 5px rgba(255, 255, 255, .7);
+}
+
+.FullName{
+  font-weight: bold;
 }
