@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IRegister } from '../Model/iregister';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUser } from '../Model/iuser';
 
 @Injectable({
@@ -23,6 +23,14 @@ export class UserStoreService {
   getUserById(id: number): Observable<IUser> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<IUser>(url);
+  }
+
+  updateUser(user: IUser): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const url = `${this.apiUrl}/${user.userId}`;
+    return this.http.put(url, user, httpOptions);
   }
 
 }

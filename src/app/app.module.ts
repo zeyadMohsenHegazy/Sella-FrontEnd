@@ -61,6 +61,8 @@ import { ProductsComponent } from './Components/products/products.component';
     NgxPayPalModule,   
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    
+    
   ],
   providers: [],
   //   {provide: HTTP_INTERCEPTORS,
