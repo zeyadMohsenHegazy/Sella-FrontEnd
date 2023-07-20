@@ -1,7 +1,6 @@
 .Headers:hover {
   color: #aba2fd !important;
-  font-size: 1.1em;
-  font-weight: 500;
+  font-weight: bold;
 }
 .cart{
   margin-left: .5em;
@@ -49,4 +48,16 @@ nav{
   align-items: center;
   background-color: white;
   color: black;
+}
+
+.PicksLink{
+  font-weight: bold !important;
+}
+.PicksLink:hover {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.Header{
+  box-shadow: 0px 5px 20px 5px rgba(255, 255, 255, .7);
 }
