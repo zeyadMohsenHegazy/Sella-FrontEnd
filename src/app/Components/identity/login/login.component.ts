@@ -45,10 +45,11 @@ loginForm! : FormGroup;
             this.auth.StoreUserId(value.user)
             const TokenPayload = this.auth.DecodeToken();
             this.storeToken.SetFullNameForStore(TokenPayload.unique_name);
+            this.CartFun();
             this.toastr.success(value.message , 'Log in Success');
             this.router.navigate(['home']);
             // get or create user cart id , user id 
-           this.CartFun();
+       
         },
         error: (err) => {        
             this.toastr.error(err?.error.message, 'Error');        
@@ -98,16 +99,19 @@ loginForm! : FormGroup;
       //  */
       this.serve.getProducts().subscribe(res => {
         length = res.length;
-        g_total =  this.serve.getTotalPrice();;
+        g_total =  this.serve.getTotalPrice();
       })
       // console.log(length + " - " + g_total );
-      // console.log("User ID : "+userid  );
+      console.log("User ID : "+userid  );
       let cartdata:ICart={CartID:0 , Quantity : length , SubTotal : g_total ,CustomerID:userid}
+      console.log(cartdata);
+
       this.CartService.addCart(cartdata)
       .subscribe(
         (cartId : any) => {
-          //console.log('CCCC',cartId);
+          console.log('CCCC',cartId);
           localStorage.setItem('CartID', cartId);
+          
       // 4 - For each Product in LocalStorage Add Product ID + Cart ID in CartProduct table
           cartDataDetials.forEach(element  => {
            // console.log('Product ID in Cart : '+ element.productID);
@@ -132,8 +136,8 @@ loginForm! : FormGroup;
     }
 
     else{
-      let user : any = localStorage.getItem('user');
-      let userid = JSON.parse(user).userId;
+      let user : any = localStorage.getItem('UserID');
+      let userid = JSON.parse(user);
       let cartdata:ICart={CartID:0 , Quantity : 0 , SubTotal : 0 ,CustomerID:userid}
       this.CartService.addCart(cartdata)
       .subscribe(

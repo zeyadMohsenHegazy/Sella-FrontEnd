@@ -46,7 +46,8 @@ import { TopPicksComponent } from './Components/top-picks/top-picks.component';
     LoginComponent,
     RegisterComponent,
     CheckoutComponent,
-    TopPicksComponent
+    TopPicksComponent,
+   
   
     
   ],
@@ -59,6 +60,8 @@ import { TopPicksComponent } from './Components/top-picks/top-picks.component';
     NgxPayPalModule,   
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    
+    
   ],
   providers: [],
   //   {provide: HTTP_INTERCEPTORS,

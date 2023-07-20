@@ -10,38 +10,47 @@ import { IUser } from 'src/app/Model/iuser';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { OrderService } from 'src/app/Services/order.service';
+import { IOrderProduct } from 'src/app/Model/iorder-product';
+import { ICart } from 'src/app/Model/icart';
+import { CartService } from 'src/app/Services/cart.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-    public payPalConfig?: IPayPalConfig;
-    products?: IProduct[];
-    UserDetial: IUser | undefined;
-    ProductQuantity? : number;
-    TotalPrice: number = 0;
-    userid : number = 0;
-    cartid : number = 0;
-    showPromoCode: boolean = false;
-    isPromoApplied : boolean = false;
+  public payPalConfig?: IPayPalConfig;
+  products?: IProduct[];
+  UserDetial: IUser | undefined;
+  ProductQuantity?: number;
+  TotalPrice: number = 0;
+  userid: number = 0;
+  cartid: number = 0;
+  showPromoCode: boolean = false;
+  isPromoApplied: boolean = false;
+  Fulladdress: string = '';
+  Fname: string = '';
+  Lname: string = '';
+  CPhone: string = '';
+  CMail: string = '';
 
-    constructor(private serve : CartProductsService , 
-      private userserve : UserStoreService,
-      private toast : ToastrService,
-      private route : Router){}
+  constructor(private serve: CartProductsService,
+    private userserve: UserStoreService,
+    private toast: ToastrService,
+    private route: Router, private OrderService: OrderService, private service: CartService
+    , private del_serve: CartProductsService) { }
 
-    ngOnInit()
-    {
-      this.initConfig();
-      this.TotalPrice = 0;
-      let user: any = localStorage.getItem('UserID');
-      this.userid = JSON.parse(user);
+  ngOnInit() {
+    this.initConfig();
+    this.TotalPrice = 0;
+    let user: any = localStorage.getItem('UserID');
+    this.userid = JSON.parse(user);
 
-      let cart: any = localStorage.getItem('CartID');
-      this.cartid = JSON.parse(cart);
+    let cart: any = localStorage.getItem('CartID');
+    this.cartid = JSON.parse(cart);
 
-      this.serve.getProductsByCartId(this.cartid)
+    this.serve.getProductsByCartId(this.cartid)
       .subscribe({
         next: (res) => {
           this.products = res;
@@ -51,141 +60,139 @@ export class CheckoutComponent {
               this.TotalPrice += element.price;
             });
           }
-          console.log(this.products);       
+          console.log(this.products);
         },
         error: (error) => {
           console.log(error);
         }
       })
 
-      this.userserve.getUserById(this.userid)
+    this.userserve.getUserById(this.userid)
       .subscribe({
-       next : (res) => {this.UserDetial = res ;
-         console.log(this.UserDetial);
-         console.log("LELfkfir ---- "+"  " +this.UserDetial.firstName);} ,
-         error : (error) => {console.log(error);}
-        }
+        next: (res) => {
+          this.UserDetial = res;
+          this.Fname = res.firstName;
+          this.Lname = res.lastName;
+          this.CMail = res.email;
+        },
+        error: (error) => { console.log(error); }
+      }
       );
 
-      
 
-    }
-    private initConfig(): void {
-      this.payPalConfig = {
-        currency: 'USD',
-        clientId: 'AUjVCXUc5fPSdqJ8Nxt-WauUA5KoE6AkIhoc6xPjtIRWCAQYstuoZ27bLqrUddTY9rEn0xENe2utO99s',
-        createOrderOnClient: (data) => <ICreateOrderRequest>{
-          intent: 'CAPTURE',
-          purchase_units: [
-            {
-              amount: {
-                currency_code: 'USD',
-                value: `${this.TotalPrice}`,
-                breakdown: {
-                  item_total: {
-                    currency_code: 'USD',
-                    value: `${this.TotalPrice}`
-                  }
+
+  }
+  private initConfig(): void {
+    this.payPalConfig = {
+      currency: 'USD',
+      clientId: 'AUjVCXUc5fPSdqJ8Nxt-WauUA5KoE6AkIhoc6xPjtIRWCAQYstuoZ27bLqrUddTY9rEn0xENe2utO99s',
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
+        intent: 'CAPTURE',
+        purchase_units: [
+          {
+            amount: {
+              currency_code: 'USD',
+              value: `${this.TotalPrice}`,
+              breakdown: {
+                item_total: {
+                  currency_code: 'USD',
+                  value: `${this.TotalPrice}`
                 }
-              },
-              items: [
-                {
-                  name: 'Enterprise Subscription',
-                  quantity: '1',
-                  category: 'DIGITAL_GOODS',
-                  unit_amount: {
-                    currency_code: 'USD',
-                    value: `${this.TotalPrice}`,
-                  },
-                }
-              ]
-            }
-          ]
-        },
-        advanced: {
-          commit: 'true'
-        },
-        style: {
-          label: 'paypal',
-          layout: 'vertical'
-        },
-  
-        onApprove: (data, actions) => {
-          console.log('onApprove - transaction was approved, but not authorized', data, actions);
-          actions.order.get().then((details : any) => {
-            console.log('onApprove - you can get full order details inside onApprove: ', details);
+              }
+            },
+            items: [
+              {
+                name: 'Enterprise Subscription',
+                quantity: '1',
+                category: 'DIGITAL_GOODS',
+                unit_amount: {
+                  currency_code: 'USD',
+                  value: `${this.TotalPrice}`,
+                },
+              }
+            ]
+          }
+        ]
+      },
+      advanced: {
+        commit: 'true'
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical'
+      },
 
-          });
-          this.toast.success('Your order is completed successfully');
-          this.route.navigate(['home']);
-        },
-  
-        onClientAuthorization: (data) => {
-          console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-          this.toast.info(' you should probably inform your server about completed transaction at this point' + data)   
-        },
-  
-        onCancel: (data, actions) => {
-          console.log('OnCancel', data, actions);
-          this.toast.warning('You have canceled the order')
-        },
-  
-        onError: (err) => {
-          console.log('OnError', err);
-          this.toast.error(err);
-          
-        },
-        onClick: () => {
-          console.log('onClick');
-          this.toast.show('wait for paypal service')
-        },
-      };
-    }
-  
-    applyPromoCode(promoCode: string) {
-      switch (promoCode) {
-        case 'promo1':
-          this.applyDiscount(10);
-          this.isPromoApplied = true;
-          break;
-        case 'promo2':
-          this.applyDiscount(15);
-          this.isPromoApplied = true;
-          break;
-        case 'promo3':
-          this.applyDiscount(20);
-          this.isPromoApplied = true;
-          break;
-        default:
-          alert('Invalid promo code');
-          break;
-      }
-      
-    }
+      onApprove: (data, actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then((details: any) => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
 
-    applyDiscount(discountPercent: number) {
-      this.showPromoCode = true;
-      let totalPrice = this.TotalPrice;
-      let discountAmount = totalPrice * (discountPercent / 100);
-      this.TotalPrice = totalPrice - discountAmount;
-    }
+        });
+        this.toast.success('Your order is completed successfully');
+        this.route.navigate(['home']);
+      },
 
-    
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        this.toast.info(' you should probably inform your server about completed transaction at this point' + data)
+      },
 
-  ok() {
-   
-    console.log(this.products);
-    console.log("Here is my User ID :"+this.userid);
-    console.log("Here is my Cart ID :"+this.cartid);
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+        this.toast.warning('You have canceled the order')
+      },
 
-      
+      onError: (err) => {
+        console.log('OnError', err);
+        this.toast.error(err);
+
+      },
+      onClick: () => {
+        console.log('onClick');
+        this.toast.show('wait for paypal service')
+      },
+    };
   }
 
+  applyPromoCode(promoCode: string) {
+    switch (promoCode) {
+      case 'promo1':
+        this.applyDiscount(10);
+        this.isPromoApplied = true;
+        break;
+      case 'promo2':
+        this.applyDiscount(15);
+        this.isPromoApplied = true;
+        break;
+      case 'promo3':
+        this.applyDiscount(20);
+        this.isPromoApplied = true;
+        break;
+      default:
+        alert('Invalid promo code');
+        break;
+    }
+
+  }
+
+  applyDiscount(discountPercent: number) {
+    this.showPromoCode = true;
+    let totalPrice = this.TotalPrice;
+    let discountAmount = totalPrice * (discountPercent / 100);
+    this.TotalPrice = totalPrice - discountAmount;
+  }
+
+
+
+
+
+
+
   //cities
-  selectedGovernorate: string ='';
-  selectedCountry: string ='';
-  selectedCity : string ='';
-  selectedApartment: string ='';
+  selectedGovernorate: string = '';
+  selectedCountry: string = '';
+  selectedCity: string = '';
+  selectedApartment: string = '';
 
   getCitiesByGovernorate(governorate: string | undefined): string[] {
     switch (governorate) {
@@ -256,15 +263,126 @@ export class CheckoutComponent {
     const apartment = event.target.value;
     this.selectedApartment = apartment;
   }
-  onCityChange(event: any){
+  onCityChange(event: any) {
     const City = event.target.value;
     this.selectedCity = City;
   }
 
+  onPhoneChange(event: any) {
+    const P = event.target.value;
+    this.CPhone = P;
+  }
 
+  onMailChange(event: any) {
+    const M = event.target.value;
+    this.CMail = M;
+  }
+
+  onFnameChange(event: any) {
+    const F = event.target.value;
+    this.Fname = F;
+  }
+
+  onLnameChange(event: any) {
+    const L = event.target.value;
+    this.Lname = L;
+  }
+
+
+
+
+  UserData: IUser | null = null;
+
+  ok() {
+    // console.log(this.products);
+    // console.log("Here is my User ID :"+this.userid);
+    // console.log("Here is my Cart ID :"+this.cartid);
+    this.Fulladdress = 'Egypt' + ',' + this.selectedGovernorate + ',' + this.selectedCity + ',' + this.selectedApartment;
+    // console.log("Address : "+ this.Fulladdress);
+    // console.log("Phone" + this.CPhone);
+    // console.log("Mail" + this.CMail);
+    // console.log("Fname" + this.Fname);
+    // console.log("Lname" + this.Lname);
+
+    this.UserData = { userId: this.userid, firstName: this.Fname, lastName: this.Lname, email: this.CMail, address: this.Fulladdress, phone: this.CPhone };
+
+    this.userserve.updateUser(this.UserData)
+      .subscribe(
+        response => {
+          console.log(response); // log the response from the API
+        },
+        error => {
+          console.log(error); // log any errors from the API
+
+        }
+      );
+
+    console.log(this.UserData);
+
+  }
 
   //Whatssapp API btn 
-  CashOnDelivery(){
-    
+  CashOnDelivery() {
+    let _OrderID: number = 0;
+
+    //Data For What's App API
+    // console.log(this.UserData);
+
+
+    this.products?.forEach(element => {
+      console.log(element.productID);
+      console.log(element.productName);
+    });
+
+     // Create an Order For User
+      console.log("Here is my User ID :"+this.userid);
+      this.OrderService.addOrder(this.userid)
+      .subscribe(
+       (res) => {
+        _OrderID = res;
+        // Add in Order Products
+        this.products?.forEach(element => {
+          let Porder : IOrderProduct = { OrderID : _OrderID , ProductID : element.productID}
+          this.OrderService.addProductOrder(Porder)
+          .subscribe(
+            () => console.log('Product order created.'),
+            error => console.error(error)
+          );
+        }); 
+
+      },
+       (error) => {console.log(error);}
+      );
+
+    // Update Cart
+    let cart = localStorage.getItem('CartID');
+    let _cartId: number = 0;
+    if (cart) {
+      _cartId = parseInt(JSON.parse(cart));
+      console.log("CARRRRRRT ID :" + _cartId);
+      let cartdata: ICart = { CartID: _cartId, Quantity: 0, SubTotal: 0, CustomerID: this.userid }
+      this.service.editCart(_cartId, cartdata)
+        .subscribe(
+          () => { },
+          error => console.error(error)
+        );
+
+      // Delete All Product From Product Cart
+      this.products?.forEach(element => {
+        this.del_serve.delete(_cartId, element.productID)
+          .subscribe(
+            () => console.log('Cart product deleted.'),
+            error => console.error(error)
+          );
+      });
+
+
+    }
+
+
+
+
+
+
   }
 }

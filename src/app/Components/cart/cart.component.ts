@@ -45,32 +45,32 @@ export class CartComponent {
 
   Confirm() {
 
-    // // 1 - Get SubTotal & Quantity
-    // //console.log("count  : " + this.totalItem + "subtotal : " + this.grandtotal);
+    // 1 - Get SubTotal & Quantity
+    //console.log("count  : " + this.totalItem + "subtotal : " + this.grandtotal);
 
-    // // 2 - Get User ID
-    // let user: any = localStorage.getItem('user');
-    // let userid = JSON.parse(user).userId;
-    // // console.log(userid);
+    // 2 - Get User ID
+    let user: any = localStorage.getItem('user');
+    let userid = JSON.parse(user).userId;
+    // console.log(userid);
     
-    // const cartData = JSON.parse(localStorage.getItem('Cart') || '[]');
-    // // 3 - Get Cart ID
-    // let cart = localStorage.getItem('CartID');
-    // if (cart) {
-    //   let _cartId = parseInt(JSON.parse(cart));
-    //   //console.log(_cartId);
-    //   const cart_edited: ICart = {
-    //     CartID: _cartId,
-    //     Quantity: this.totalItem,
-    //     SubTotal: this.grandtotal,
-    //     CustomerID: userid // Replace with the actual customer ID
-    //   };
-    //   this.serv.editCart(_cartId,cart_edited)
-    //   .subscribe( () => {console.log("Cart Edited") ; },
-    //   (error) => {console.log(error);}
-    //   );
+    const cartData = JSON.parse(localStorage.getItem('Cart') || '[]');
+    // 3 - Get Cart ID
+    let cart = localStorage.getItem('CartID');
+    if (cart) {
+      let _cartId = parseInt(JSON.parse(cart));
+      //console.log(_cartId);
+      const cart_edited: ICart = {
+        CartID: _cartId,
+        Quantity: this.totalItem,
+        SubTotal: this.grandtotal,
+        CustomerID: userid // Replace with the actual customer ID
+      };
+      this.serv.editCart(_cartId,cart_edited)
+      .subscribe( () => {console.log("Cart Edited") ; },
+      (error) => {console.log(error);}
+      );
 
-    // }
+    }
     // // 4 - Get if Some Product in Local Storage 
 
     this.router.navigate(['/Checkout']);
