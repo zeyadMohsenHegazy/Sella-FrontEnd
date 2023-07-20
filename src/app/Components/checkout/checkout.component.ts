@@ -21,6 +21,8 @@ export class CheckoutComponent {
     UserDetial: IUser | undefined;
     ProductQuantity? : number;
     TotalPrice: number = 0;
+    userid : number = 0;
+    cartid : number = 0;
     showPromoCode: boolean = false;
     isPromoApplied : boolean = false;
 
@@ -34,12 +36,12 @@ export class CheckoutComponent {
       this.initConfig();
       this.TotalPrice = 0;
       let user: any = localStorage.getItem('UserID');
-      let userid = JSON.parse(user);
+      this.userid = JSON.parse(user);
 
       let cart: any = localStorage.getItem('CartID');
-      let cartid = JSON.parse(cart);
+      this.cartid = JSON.parse(cart);
 
-      this.serve.getProductsByCartId(cartid)
+      this.serve.getProductsByCartId(this.cartid)
       .subscribe({
         next: (res) => {
           this.products = res;
@@ -56,7 +58,7 @@ export class CheckoutComponent {
         }
       })
 
-      this.userserve.getUserById(userid)
+      this.userserve.getUserById(this.userid)
       .subscribe({
        next : (res) => {this.UserDetial = res ;
          console.log(this.UserDetial);
@@ -172,6 +174,9 @@ export class CheckoutComponent {
 
   ok() {
    
+    console.log(this.products);
+    console.log("Here is my User ID :"+this.userid);
+    console.log("Here is my Cart ID :"+this.cartid);
 
       
   }
