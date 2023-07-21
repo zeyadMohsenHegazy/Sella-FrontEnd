@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
 import { CartProductsService } from 'src/app/Services/cart-products.service';
 import { UserStoreService } from 'src/app/Services/user-store.service';
-import { IRegister } from 'src/app/Model/iregister';
-import { error } from 'jquery';
 import { IUser } from 'src/app/Model/iuser';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +12,6 @@ import { OrderService } from 'src/app/Services/order.service';
 import { IOrderProduct } from 'src/app/Model/iorder-product';
 import { ICart } from 'src/app/Model/icart';
 import { CartService } from 'src/app/Services/cart.service';
-declare var jQuery: any;
 
 @Component({
   selector: 'app-checkout',

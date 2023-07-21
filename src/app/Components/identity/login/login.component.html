@@ -7,9 +7,7 @@
             <img
               src="../../../../assets/Images/Logo/sellaLogo.jpg"
               class="card-img-top w-100"
-              
-              alt=""
-            />
+              alt=""/>
           </div>
         </div>
         <div class="card-header">
@@ -81,8 +79,8 @@
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <p class="modal-title" id="exampleModalLabel"> <span style="font-size: 25px;font-weight:700">Forget your password?</span><br>
-                  <small>Please provide your E-mail we will send the reset link</small></p>
+              <p class="modal-title" id="exampleModalLabel"> <span class="h2">Forget your password?</span><br>
+                  <small >Please provide your E-mail we will send the reset link</small></p>
 
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -90,7 +88,9 @@
 
           <div class="modal-body">
               <div class="form-group pt-3">
-                  <div class="input-field"> <span class="fa fa-user p-2"></span> <input class="form-control" [(ngModel)]="ResetPasswordEmail" (ngModelChange)="CheckValidEmail($event)" type="text" placeholder="Email"> </div>
+                  <div class="input-field">
+                    <input class="form-control" [(ngModel)]="ResetPasswordEmail" (ngModelChange)="CheckValidEmail($event)" type="text" placeholder="Email"> 
+                  </div>
               </div>
               <small *ngIf="!ResetPasswordEmail" class="text-danger d-block">*Email is required*</small>
               <small *ngIf="!IsValidEmail && ResetPasswordEmail"  class="text-danger d-block">*Email is Invalid*</small>
