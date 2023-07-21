@@ -359,7 +359,6 @@ export class CheckoutComponent {
     let _cartId: number = 0;
     if (cart) {
       _cartId = parseInt(JSON.parse(cart));
-      console.log("CARRRRRRT ID :" + _cartId);
       let cartdata: ICart = { CartID: _cartId, Quantity: 0, SubTotal: 0, CustomerID: this.userid }
       this.service.editCart(_cartId, cartdata)
         .subscribe(
