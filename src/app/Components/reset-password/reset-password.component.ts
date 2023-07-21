@@ -29,17 +29,12 @@ export class ResetPasswordComponent implements OnInit{
       validator: ConfirmPasswordValidator("Password","ConfirmPassword")
     })
 
-    // this.activatedRout.queryParams.subscribe(value =>{
-    //   this.emailToReset = value['email'];
-    //   let UrlToken = value['code'];
-    //   this.emailToken = UrlToken.replace(/ /g,'+');
-    // })
-    this.activatedRout.queryParams.subscribe(value =>{
+      this.activatedRout.queryParams.subscribe(value =>{
       this.emailToReset = value['email'];
-      let UrlToken = value['code'];
-      let tokenArray = UrlToken.split('/');
-      this.emailToken = tokenArray[0]; // take the first part
-    });
+       let UrlToken = value['code'];
+       this.emailToken = UrlToken.replace(/ /g,'+');
+     })
+    
   }
 
   Reset(){
@@ -48,7 +43,8 @@ export class ResetPasswordComponent implements OnInit{
       this.resetPasswordObj.EmailToken = this.emailToken;
       this.resetPasswordObj.NewPassword = this.ResetPasswordForm.value.Password;
       this.resetPasswordObj.ConfirmPassword = this.ResetPasswordForm.value.ConfirmPassword;
-    
+      console.log(this.emailToReset); 
+      console.log(this.emailToken);
       this.resetService.resetPassword(this.resetPasswordObj)
       .subscribe({
         next:(value)=>{
