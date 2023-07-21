@@ -14,6 +14,8 @@ import { OrderService } from 'src/app/Services/order.service';
 import { IOrderProduct } from 'src/app/Model/iorder-product';
 import { ICart } from 'src/app/Model/icart';
 import { CartService } from 'src/app/Services/cart.service';
+declare var jQuery: any;
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -297,7 +299,7 @@ export class CheckoutComponent {
     // console.log(this.products);
     // console.log("Here is my User ID :"+this.userid);
     // console.log("Here is my Cart ID :"+this.cartid);
-    this.Fulladdress = 'Egypt' + ',' + this.selectedGovernorate + ',' + this.selectedCity + ',' + this.selectedApartment;
+    this.Fulladdress = 'Egypt' + ' - ' + this.selectedGovernorate + ' - ' + this.selectedCity + ' - ' + this.selectedApartment;
     // console.log("Address : "+ this.Fulladdress);
     // console.log("Phone" + this.CPhone);
     // console.log("Mail" + this.CMail);
@@ -328,12 +330,26 @@ export class CheckoutComponent {
     //Data For What's App API
     // console.log(this.UserData);
 
-
+    let result: string = '';
     this.products?.forEach(element => {
-      console.log(element.productID);
-      console.log(element.productName);
+      result += `- Product Name: ${element.productName} & Price:${element.price}\n`;
     });
-
+    //////////////////////////////////////////whatssAPI////////////////////////////////
+      let data: string =  `token=glamz1fu79hu4dn0&to=+201202982836&body=Customer-Name:${this.UserData?.firstName} ${this.UserData?.lastName}\nCustomer-Address:${this.UserData?.address}\nCustomer-Phone:${this.UserData?.phone}\nOrder-Details:\n${result}\nTotalMoney=${this.TotalPrice}$`;
+    
+      let xhr: XMLHttpRequest = new XMLHttpRequest();
+      xhr.withCredentials = false;
+    
+      xhr.addEventListener("readystatechange", function (): void {
+        if (this.readyState === this.DONE) {
+          console.log(this.responseText);
+        }
+      });
+    
+      xhr.open("POST", "https://api.ultramsg.com/instance49044/messages/chat");
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send(data);
+    /////////////////////////////////////whatssAPI////////////////////////////////////
      // Create an Order For User
       console.log("Here is my User ID :"+this.userid);
       this.OrderService.addOrder(this.userid)

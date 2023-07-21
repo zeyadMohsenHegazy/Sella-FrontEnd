@@ -6,8 +6,8 @@ import { JwtHelperService } from '@auth0/angular-jwt'
   providedIn: 'root'
 })
 export class JWTService {
-  RegisterUrl = 'http://localhost:49182/Register/'; 
-  LoginUrl = 'http://localhost:49182/Login/';
+  RegisterUrl = 'http://localhost:49182/api/User/Register/'; 
+  LoginUrl = 'http://localhost:49182/api/User/Login/';
 
   private UserPayload :any;
   constructor(private http:HttpClient, private route:Router) {

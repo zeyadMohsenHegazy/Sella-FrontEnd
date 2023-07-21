@@ -12,6 +12,7 @@ import { RegisterComponent } from './Components/identity/register/register.compo
 import { AuthGuard } from './Guards/auth.guard';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { ProductsComponent } from './Components/products/products.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'register' , component: RegisterComponent},
   {path: 'Checkout' , component: CheckoutComponent},
   {path: 'products' , component: ProductsComponent},
+  {path:'reset' , component:ResetPasswordComponent},
 
   {path:'**' , component: NotFoundComponent}
 ];

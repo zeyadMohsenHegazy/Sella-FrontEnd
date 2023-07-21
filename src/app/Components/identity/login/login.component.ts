@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserStoreService } from 'src/app/Services/user-store.service';
 import { ProductDetailsComponent } from '../../product-details/product-details.component';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
+import { ResetPasswordService } from 'src/app/Services/reset-password.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,11 @@ loginForm! : FormGroup;
     private auth: JWTService, 
     private router : Router , 
     private Pcartservic : CartProductsService , private CartService : CartService,
-    private storeToken : UserStoreService , private serve : CartDetialsService ){}
+    private storeToken : UserStoreService , private serve : CartDetialsService,
+    private resetService :ResetPasswordService ){}
+
+    public ResetPasswordEmail! : string;
+    public IsValidEmail! : boolean;
 
   ngOnInit(): void {
     const userData = { username: 'Kero', userId: 1 };
@@ -150,4 +155,33 @@ loginForm! : FormGroup;
     }
  
   }
+
+  //reset password 
+  CheckValidEmail(event: string) {
+    const pattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    this.IsValidEmail = pattern.test(event);
+    return this.IsValidEmail;
+  }
+
+  ConfirmToSend(){
+    if(this.CheckValidEmail(this.ResetPasswordEmail)){
+      console.log(this.ResetPasswordEmail);
+      
+      //api 
+      this.resetService.sendResetPasswordLink(this.ResetPasswordEmail)
+      .subscribe({
+        next: (res)=>{
+          this.toastr.success(res.message);
+          this.ResetPasswordEmail = "";
+          const Btn = document.getElementById("CloseBtn");
+          Btn?.click();
+        },
+        error:(err)=>{
+          this.toastr.error("Something went wrong");
+        }
+      })
+    }
+  }
+
+
 }
