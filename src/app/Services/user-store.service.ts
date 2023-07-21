@@ -9,6 +9,7 @@ import { IUser } from '../Model/iuser';
 })
 export class UserStoreService {
   private apiUrl = 'http://localhost:49182/api/User';
+  private apiUrl1 = 'http://localhost:49182/api/User/api/User';
   private FullName = new BehaviorSubject<string> ("");
   constructor(private http: HttpClient) { }
 
@@ -21,7 +22,7 @@ export class UserStoreService {
   }
 
   getUserById(id: number): Observable<IUser> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl1}/${id}`;
     return this.http.get<IUser>(url);
   }
 
