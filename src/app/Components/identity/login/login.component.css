@@ -114,3 +114,6 @@
     border: 3px solid #dc3545 !important;   
     background-color: #fdf1f1 !important; 
   }
+  .ForgotPass{
+    cursor: pointer;
+  }

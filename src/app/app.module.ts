@@ -27,6 +27,7 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { TopPicksComponent } from './Components/top-picks/top-picks.component';
 import { ProductsComponent } from './Components/products/products.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { ProductsComponent } from './Components/products/products.component';
     RegisterComponent,
     CheckoutComponent,
     TopPicksComponent,
-    ProductsComponent
+    ProductsComponent,
+    ResetPasswordComponent
   
     
   ],

@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row mb-3">
-    <div class="col-md-4 mx-auto">
+  <div class="row mb-3 justify-content-center">
+    <div class="col-md-4 col-sm-12">
       <div class="card rounded-2">
         <div class="d-flex justify-content-center">
           <div class="mt-0 p-0">
@@ -42,7 +42,9 @@
               </div>
               <small *ngIf="loginForm.controls['Password'].dirty && loginForm.hasError('required','Password')"  class="text-danger">*Password is Required!</small>
               <div class="form mt-2">
-                <a class="text-primary" href="#">Forget Password?</a>
+                <div class="form-inline fr"> 
+                  <a id="forgot" data-bs-toggle="modal" data-bs-target="#exampleModal" class="font-weight-bold ForgotPass">Forgot password?</a>
+                 </div>
               </div>
               <button (click)="login()" type="submit" class="btn btn-dark w-100 mt-4">
                 Login
@@ -70,5 +72,33 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <p class="modal-title" id="exampleModalLabel"> <span style="font-size: 25px;font-weight:700">Forget your password?</span><br>
+                  <small>Please provide your E-mail we will send the reset link</small></p>
+
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+          </div>
+
+          <div class="modal-body">
+              <div class="form-group pt-3">
+                  <div class="input-field"> <span class="fa fa-user p-2"></span> <input class="form-control" [(ngModel)]="ResetPasswordEmail" (ngModelChange)="CheckValidEmail($event)" type="text" placeholder="Email"> </div>
+              </div>
+              <small *ngIf="!ResetPasswordEmail" class="text-danger d-block">*Email is required*</small>
+              <small *ngIf="!IsValidEmail && ResetPasswordEmail"  class="text-danger d-block">*Email is Invalid*</small>
+          </div>
+          <div class="modal-footer">
+              <button type="button" id="CloseBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" (click)="ConfirmToSend()" class="btn btn-primary">Send</button>
+          </div>
+      </div>
   </div>
 </div>
