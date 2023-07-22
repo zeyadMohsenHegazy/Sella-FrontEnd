@@ -12,6 +12,7 @@ import { OrderService } from 'src/app/Services/order.service';
 import { IOrderProduct } from 'src/app/Model/iorder-product';
 import { ICart } from 'src/app/Model/icart';
 import { CartService } from 'src/app/Services/cart.service';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-checkout',
@@ -33,6 +34,8 @@ export class CheckoutComponent {
   Lname: string = '';
   CPhone: string = '';
   CMail: string = '';
+
+  pdfurl = '';
 
   constructor(private serve: CartProductsService,
     private userserve: UserStoreService,
@@ -320,21 +323,21 @@ export class CheckoutComponent {
 
   }
 
+  showButton = false;
   //Whatssapp API btn 
   CashOnDelivery() {
     let _OrderID: number = 0;
-
     //Data For What's App API
     // console.log(this.UserData);
 
-    let result: string ='';
+    let result: string = '';
     this.products?.forEach(element => {
       result += `- Product Name: ${element.productName} - Price:${(element.price).toString()}\n`;
     });
     alert(`product details : ${result}`);
     //////////////////////////////////////////whatssAPI////////////////////////////////
-      let data: string =  `token=glamz1fu79hu4dn0&to=+201555424873&body=Name:${this.UserData?.firstName} ${this.UserData?.lastName}\nAddress:${this.UserData?.address}\nPhone:${this.UserData?.phone}\nOrder:\n${result!}\nTotalMoney=${(this.TotalPrice).toString()}$`;
-
+      let data: string =  `token=glamz1fu79hu4dn0&to=+201202982836&body=Customer-Name:${this.UserData?.firstName} ${this.UserData?.lastName}\nCustomer-Address:${this.UserData?.address}\nCustomer-Phone:${this.UserData?.phone}\nOrder-Details:\n${result}\nTotalMoney=${this.TotalPrice}$`;
+    
       let xhr: XMLHttpRequest = new XMLHttpRequest();
       xhr.withCredentials = false;
     
@@ -348,24 +351,25 @@ export class CheckoutComponent {
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.send(data);
     /////////////////////////////////////whatssAPI////////////////////////////////////
-     // Create an Order For User
-      console.log("Here is my User ID :"+this.userid);
-      this.OrderService.addOrder(this.userid)
+    // Create an Order For User
+    console.log("Here is my User ID :" + this.userid);
+    this.OrderService.addOrder(this.userid)
       .subscribe(
-       (res) => {
-        _OrderID = res;
-        // Add in Order Products
-        this.products?.forEach(element => {
-          let Porder : IOrderProduct = { OrderID : _OrderID , ProductID : element.productID}
-          this.OrderService.addProductOrder(Porder)
-          .subscribe(
-            () => console.log('Product order created.'),
-            error => console.error(error)
-          );
-        }); 
+        (res) => {
+          _OrderID = res;
+          localStorage.setItem("OrderID", res.toString());
+          // Add in Order Products
+          this.products?.forEach(element => {
+            let Porder: IOrderProduct = { OrderID: _OrderID, ProductID: element.productID }
+            this.OrderService.addProductOrder(Porder)
+              .subscribe(
+                () => console.log('Product order created.'),
+                error => console.error(error)
+              );
+          });
 
-      },
-       (error) => {console.log(error);}
+        },
+        (error) => { console.log(error); }
       );
 
     // Update Cart
@@ -389,13 +393,32 @@ export class CheckoutComponent {
           );
       });
 
+      this.showButton = !this.showButton;
 
     }
-
-
-
-
-
-
   }
+
+  Report() {
+    
+   // Generate a Invoivce
+   let or_id: number = 0;
+   let data = localStorage.getItem('OrderID');
+   if (data) {
+     or_id = parseInt(data);
+     let Filname: string = "Invoice" + " " + or_id;
+     this.OrderService.generateInvoice(or_id).subscribe(response => {
+       const file = new Blob([response], { type: 'application/pdf' });
+       const fileURL = URL.createObjectURL(file);
+       window.open(fileURL);
+       let a = document.createElement('a');
+       a.download = Filname;
+       a.href = fileURL;
+       a.click();
+     });
+   }
+  }
+
 }
+
+
+

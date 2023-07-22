@@ -41,6 +41,7 @@
                 <h4 class="mb-3 text-center">Payment</h4>
                 <input type="button" class="btn btn-dark w-100 mb-3 btn-lg rounded-1" (click)="CashOnDelivery()" value="Cash On Delivery">
                 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                <input type="button" class="btn btn-dark w-100 mb-3 btn-lg rounded-1" (click)="Report()" *ngIf="showButton" value="Generate Invoice" >
             </div>
 
             <div class="col-md-7 col-lg-8" *ngIf="UserDetial">
@@ -145,4 +146,8 @@
             </div>
         </div>
     </main>
+</div>
+
+<div *ngIf="pdfurl">
+    <ngx-extended-pdf-viewer [src]="pdfurl"></ngx-extended-pdf-viewer>
 </div>
