@@ -328,31 +328,28 @@ export class CheckoutComponent {
   CashOnDelivery() {
     let _OrderID: number = 0;
     //Data For What's App API
+    // console.log(this.UserData);
+
     let result: string = '';
-    
     this.products?.forEach(element => {
-      result += `- Product Name: ${element.productName} & Price:${element.price}\n`;
+      result += `- Product Name: ${element.productName} - Price:${(element.price).toString()}\n`;
     });
-    
+    alert(`product details : ${result}`);
     //////////////////////////////////////////whatssAPI////////////////////////////////
-    let data: string = `token=glamz1fu79hu4dn0&to=+201202982836&body=Customer-Name:${this.UserData?.firstName} ${this.UserData?.lastName}\nCustomer-Address:${this.UserData?.address}\nCustomer-Phone:${this.UserData?.phone}\nOrder-Details:\n${result}\nTotalMoney=${this.TotalPrice}$`;
-    //let data: string = `token=glamz1fu79hu4dn0&to=+201202982836&body=Order-Details:\n${result}\nTotalMoney=${this.TotalPrice}$`;
-
-
-    console.log(data);
-    let xhr: XMLHttpRequest = new XMLHttpRequest();
-    xhr.withCredentials = false;
-
-    xhr.addEventListener("readystatechange", function (): void {
-      if (this.readyState === this.DONE) {
-        console.log(this.responseText);
-      }
-    });
-
-    xhr.open("POST", "https://api.ultramsg.com/instance49044/messages/chat");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(data);
-
+      let data: string =  `token=glamz1fu79hu4dn0&to=+201202982836&body=Customer-Name:${this.UserData?.firstName} ${this.UserData?.lastName}\nCustomer-Address:${this.UserData?.address}\nCustomer-Phone:${this.UserData?.phone}\nOrder-Details:\n${result}\nTotalMoney=${this.TotalPrice}$`;
+    
+      let xhr: XMLHttpRequest = new XMLHttpRequest();
+      xhr.withCredentials = false;
+    
+      xhr.addEventListener("readystatechange", function (): void {
+        if (this.readyState === this.DONE) {
+          console.log(this.responseText);
+        }
+      });
+    
+      xhr.open("POST", "https://api.ultramsg.com/instance49044/messages/chat");
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.send(data);
     /////////////////////////////////////whatssAPI////////////////////////////////////
     // Create an Order For User
     console.log("Here is my User ID :" + this.userid);
