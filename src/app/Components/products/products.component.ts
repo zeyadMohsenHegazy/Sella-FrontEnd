@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from 'src/app/Model/IProduct';
 import { ICategory } from 'src/app/Model/icategory';
+import { Item } from 'src/app/Model/pagination';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
 import { CartService } from 'src/app/Services/cart.service';
+import { ItemService } from 'src/app/Services/item-service.service';
 import { ProductsService } from 'src/app/Services/products.service';
 
 @Component({
@@ -17,14 +19,20 @@ export class ProductsComponent  implements OnInit {
   filterProducts: IProduct[] = [];
   filterCategories: any;
   private _listFilter: string = "";
+  currentPage = 1; 
+  productsPerPage = 16; 
+  totalPages = 0; 
 
   Categories : any;
+
+  items: Item[] = [];
 
   constructor(private productService: ProductsService,
     private route: ActivatedRoute,
     private router: Router,
     private cartserv: CartService,
-    private serve: CartDetialsService){
+    private serve: CartDetialsService,
+    public itemService: ItemService){
 
     this.listFilter = "";
   }
@@ -33,7 +41,8 @@ export class ProductsComponent  implements OnInit {
       this.productService.GetAllProducts().subscribe({
       next: (products) => {
         this.Products = products;
-        this.filterProducts = this.Products;
+        this.totalPages = Math.ceil(this.Products.length / this.productsPerPage);
+        this.filterProducts = this.Products.slice(0, this.productsPerPage);
         this.filterCategories = products;
       },
       error: (error) => {
@@ -50,9 +59,33 @@ export class ProductsComponent  implements OnInit {
       }
     })
 
+    this.loadItems();
+
   }
 
-  
+  loadItems() {
+    this.items = this.itemService.getItemsForPage(this.itemService.currentPage);
+  }
+
+  changePage(page: number) {
+    const start = (page - 1) * this.productsPerPage;
+    const end = start + this.productsPerPage;
+    this.filterProducts = this.Products.slice(start, end);
+    this.currentPage = page;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.changePage(this.currentPage + 1);
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.changePage(this.currentPage - 1);
+    }
+  }
+
   public get listFilter(): string {
   return this._listFilter;
   }
@@ -82,27 +115,6 @@ export class ProductsComponent  implements OnInit {
     this.serve.addtocart(item); 
   }
 
-//   filterCategory(filterBy: string){
-//   filterBy = filterBy.toLocaleLowerCase();
-//   this.filterProducts = this.filterProducts.filter((product: IProduct) =>
-//     product.categoryName.toLocaleLowerCase().includes(filterBy)
-//   );
-// }
-// filterCategory(event: Event) {
-//   const selectElement = event.target as HTMLSelectElement;
-//   const filterBy = selectElement.value;
-//   console.log(filterBy);
-
-//   for (let i = 0; i < this.filterCategories.length; i++) {
-//     if (this.filterCategories[i].category.categoryName === filterBy) {
-//       this.FilteredProducts.push(this.filterCategories[i]);
-//     }
-//     console.log(this.FilteredProducts)
-//     console.log(this.filterCategories)
-//   }
-
-//   this.filterProducts = this.FilteredProducts;
-// }
 filterCategory(event: Event) {
   const selectElement = event.target as HTMLSelectElement;
   const filterBy = selectElement.value;

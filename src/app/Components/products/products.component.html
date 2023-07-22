@@ -43,10 +43,11 @@
                
             </div>
         </div>
+
+        <!--without pagination--> 
         <!-- Products section -->
-        <div class="col-lg-9 col-md-8 col-sm-12">
+        <!-- <div class="col-lg-9 col-md-8 col-sm-12">
             <div class="row">
-                <!-- Replace with your content -->
                 <div class="col-lg-3 col-md-4 col-sm-12" *ngFor="let product of filterProducts">
                     <div class="card mb-3 box-shadow">
                         <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="Card image cap">
@@ -66,6 +67,42 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+
+        <div class="col-lg-9 col-md-8 col-sm-12">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-12" *ngFor="let product of filterProducts">
+                    <div class="card mb-3 box-shadow">
+                    <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="Card image cap">
+                    <div class="card-body p-1">
+                        <p class="h5 card-text">{{product.productName}}</p>
+                        <h6 class="card-subtitle">Price:{{product.price | currency:'USD':'symbol'}}</h6>
+
+                    </div>
+                    <div class="card-footer text-lg-center text-md-center p-4">
+                        <a class=" m-2" (click)="addtocart(product,product.productID)">
+                            <i class="fa fa-shopping-cart fa-2xl FooterLinks"></i>
+                        </a>
+                        <a class=" m-2" (click)="viewDetails(product.productID)">
+                            <i class="fa-solid fa-circle-info fa-2xl FooterLinks"></i>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          
+            <!-- Pagination controls -->
+            
         </div>
+        <div class="row mb-2">
+            <div class="col-12 text-center">
+                <button class="btn btn-dark" (click)="prevPage()" [disabled]="currentPage == 1"><i class="fa-solid fa-backward"></i></button>
+                <span class="text-dark h6">{{currentPage}} - {{totalPages}}</span>
+                <button class="btn btn-dark" (click)="nextPage()" [disabled]="currentPage == totalPages"><i class="fa-solid fa-forward"></i></button>
+            </div>
+        </div>
+
+
     </div>
 </div>
