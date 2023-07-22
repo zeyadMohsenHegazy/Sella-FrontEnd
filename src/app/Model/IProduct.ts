@@ -1,4 +1,3 @@
-import { ICategory } from "./icategory"
 // interface for products
 export interface IProduct {
     productID:number,
@@ -11,4 +10,5 @@ export interface IProduct {
     width : number,
     height : number,
     categoryID : number,
+    categoryName:string,
 }

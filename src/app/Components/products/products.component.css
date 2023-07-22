@@ -1,0 +1,27 @@
+.fa-shopping-cart{
+    color: #ffc107;
+    cursor: pointer;     
+}
+.FooterLinks:hover{
+    color: black !important;
+}
+.fa-circle-info{
+    color: #01abf4;
+    cursor: pointer;
+}
+
+.Flex{
+    display: flex;
+    align-items: center;
+    gap : .5em;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #000000; 
+  }
+  input[type="range"]::-moz-range-track {
+    background: #000000; 
+  }
+  input[type="range"]::-ms-track {
+    background: #000000; 
+  }

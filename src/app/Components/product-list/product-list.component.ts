@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/Services/cart.service';
 import { ICart } from 'src/app/Model/icart';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
@@ -54,6 +53,7 @@ export class ProductListComponent implements OnInit {
     console.log(value);
     this.filterProducts = this.performFilter(value);
   }
+  
   performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.Products.filter((product: IProduct) =>

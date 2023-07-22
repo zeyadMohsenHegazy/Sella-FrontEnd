@@ -1,45 +1,70 @@
-<div class="container mt-2">
-    <div class="row justify-content-center mb-2">
-        <div class="col-md-4">
-            <!-- Search bar -->
-            <input class="form-control mb-4" id="productSearch" type="text" placeholder="Search">
+<div class="container-fluid mt-2">
+     <div class="row justify-content-center mb-2">
+        <div class="col-12 text-center">
+            <!-- <input class="form-control mb-4" id="productSearch" type="text" placeholder="Search" [(ngModel)]="listFilter"> -->
+            <h1>Discover our great collection</h1>
         </div>
-    </div>
+    </div> 
     <div class="row">
         <!-- Filter sidebar -->
-        <div class="col-lg-3 col-md-4 col-sm-12">
-            <h4>Filter Products</h4>
+        <div class="col-lg-3 col-md-4 col-sm-12 mx-auto">
             <div class="list-group">
-              <button type="button" class="list-group-item list-group-item-action accordion-item btn btn-warning mb-2 border-2">
-                All Products
-              </button>
-              <button type="button" class="list-group-item list-group-item-action btn btn-dark mb-2 rounded-2 border-2">Category 1</button>
-              <button type="button" class="list-group-item list-group-item-action btn btn-dark mb-2 rounded-2 border-2">Category 2</button>
-              <button type="button" class="list-group-item list-group-item-action btn btn-dark mb-2 rounded-2 border-2">Category 3</button>
-              <button type="button" class="list-group-item list-group-item-action btn btn-dark mb-2 rounded-2 border-2">Category 4</button>
+                <h4>Filter By Product</h4>
+                <input class="form-control mb-2" id="productSearch" type="text" placeholder="Search" [(ngModel)]="listFilter">
+                
+                <h4>Filter By Category</h4>
+                <select title="category" class="form-select mb-2" (change)="filterCategory($event)">
+                    <option value="AllCategories">All Categories</option>
+                    <option class="text-dark" *ngFor="let category of Categories" [value]="category.categoryName">
+                        {{category.categoryName}}
+                    </option>
+                </select>
+
+                <h4>Filter By Color</h4>
+                <select title="category" class="form-select mb-2" (change)="filterColor($event)">
+                    <option value="AllColors">All Colors</option>
+                    <option class="text-dark" *ngFor="let product of filterProducts" [value]="product.color">
+                        {{product.color}}
+                    </option>
+                </select>
+
+                <label for="money" class="h4">Filter By money</label>
+                <div class="Flex">
+                    <label for="money" class="h6 d-flex">From:</label>
+                    <input type="range" class="form-range" id="money" name="money" min="0" max="100" [value]="sliderValue1" (input)="updateValue1($event)" />
+                    <p class="h6" id="sliderValue">${{ sliderValue1 }}</p>
+                </div>
+                
+                <div class="Flex mb-2">
+                    <label for="money2" class="h6">To:</label>
+                    <input type="range" class="form-range" id="money2" name="money" min="100" max="1000" [value]="sliderValue2" (input)="updateValue2($event)" />
+                    <p class="h6" id="sliderValue">${{ sliderValue2 }}</p>
+                </div>
+               
             </div>
         </div>
         <!-- Products section -->
         <div class="col-lg-9 col-md-8 col-sm-12">
             <div class="row">
                 <!-- Replace with your content -->
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="product1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Product 1 description</p>
+                <div class="col-lg-3 col-md-4 col-sm-12" *ngFor="let product of filterProducts">
+                    <div class="card mb-3 box-shadow">
+                        <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="Card image cap">
+                        <div class="card-body p-1">
+                            <p class="h5 card-text">{{product.productName}}</p>
+                            <h6 class="card-subtitle">Price:{{product.price | currency:'USD':'symbol'}}</h6>
+
                         </div>
+                        <div class="card-footer text-lg-center text-md-center p-4">
+                            <a class=" m-2" (click)="addtocart(product,product.productID)">
+                                <i class="fa fa-shopping-cart fa-2xl FooterLinks"></i>
+                            </a>
+                            <a class=" m-2" (click)="viewDetails(product.productID)">
+                                <i class="fa-solid fa-circle-info fa-2xl FooterLinks"></i>
+                            </a>
+                          </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src="product2.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Product 2 description</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Repeat this block for each product -->
             </div>
         </div>
     </div>
