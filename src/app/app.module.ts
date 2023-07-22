@@ -28,6 +28,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { TopPicksComponent } from './Components/top-picks/top-picks.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
     NgxPayPalModule,   
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    NgxExtendedPdfViewerModule
     
     
   ],
