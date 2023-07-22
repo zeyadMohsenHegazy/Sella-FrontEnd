@@ -327,13 +327,14 @@ export class CheckoutComponent {
     //Data For What's App API
     // console.log(this.UserData);
 
-    let result: string = '';
+    let result: string ='';
     this.products?.forEach(element => {
-      result += `- Product Name: ${element.productName} & Price:${element.price}\n`;
+      result += `- Product Name: ${element.productName} - Price:${(element.price).toString()}\n`;
     });
+    alert(`product details : ${result}`);
     //////////////////////////////////////////whatssAPI////////////////////////////////
-      let data: string =  `token=glamz1fu79hu4dn0&to=+201202982836&body=Customer-Name:${this.UserData?.firstName} ${this.UserData?.lastName}\nCustomer-Address:${this.UserData?.address}\nCustomer-Phone:${this.UserData?.phone}\nOrder-Details:\n${result}\nTotalMoney=${this.TotalPrice}$`;
-    
+      let data: string =  `token=glamz1fu79hu4dn0&to=+201555424873&body=Name:${this.UserData?.firstName} ${this.UserData?.lastName}\nAddress:${this.UserData?.address}\nPhone:${this.UserData?.phone}\nOrder:\n${result!}\nTotalMoney=${(this.TotalPrice).toString()}$`;
+
       let xhr: XMLHttpRequest = new XMLHttpRequest();
       xhr.withCredentials = false;
     

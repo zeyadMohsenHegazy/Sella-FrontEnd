@@ -8,7 +8,7 @@ import { IUser } from '../Model/iuser';
   providedIn: 'root'
 })
 export class UserStoreService {
-  private apiUrl = 'http://localhost:49182/api/User';
+  private apiUrl = 'http://localhost:49182/api/User/api/User';
   private apiUrl1 = 'http://localhost:49182/api/User/api/User';
   private FullName = new BehaviorSubject<string> ("");
   constructor(private http: HttpClient) { }
