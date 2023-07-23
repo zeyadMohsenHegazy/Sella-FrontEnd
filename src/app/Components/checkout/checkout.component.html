@@ -38,10 +38,32 @@
                     </div>
                 </form>
 
-                <h4 class="mb-3 text-center">Payment</h4>
-                <input type="button" class="btn btn-dark w-100 mb-3 btn-lg rounded-1" (click)="CashOnDelivery()" value="Cash On Delivery">
-                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-                <input type="button" class="btn btn-dark w-100 mb-3 btn-lg rounded-1" (click)="Report()" *ngIf="showButton" value="Generate Invoice" >
+                <!--Modal-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-dark">
+                                <h3 class="modal-title text-light">Pick Payment Method</h3>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>                            </div>
+                  
+                            <div class="modal-body mt-2 mb-2">
+                                <div class="form-group pt-3">
+                                    <h4 class="mb-3 text-center">Choose Way To Pay</h4>
+                                    <input type="button" class="btn btn-dark w-100 mb-3 btn-lg rounded-1" (click)="CashOnDelivery()" value="Cash On Delivery">
+                                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                                    <!-- <input type="button" class="btn btn-dark w-100 mb-3 btn-lg rounded-1" (click)="Report()" *ngIf="showButton" value="Generate Invoice" > -->
+                                </div>
+                               
+                            </div>
+                            <div class="modal-footer bg-dark justify-content-center">
+                                <a id="CloseBtn" class="btn btn-outline-light" data-bs-dismiss="modal" >Cancel Order</a>
+                                <a class="btn btn-outline-warning"(click)="Report()" data-bs-dismiss="modal" *ngIf="showButton">Print Invoice</a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+
             </div>
 
             <div class="col-md-7 col-lg-8" *ngIf="UserDetial">
@@ -138,7 +160,7 @@
                             Please enter a valid phone number for shipping updates.
                         </div>
                     </div>
-                    <button class="btn btn-dark btn-lg w-100 mt-3" type="submit" (click)="ok()">
+                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark btn-lg w-100 mt-3" type="submit" (click)="ok()">
                         Save Your Contact Details
                     </button>
                 </form>
@@ -146,8 +168,4 @@
             </div>
         </div>
     </main>
-</div>
-
-<div *ngIf="pdfurl">
-    <!-- <ngx-extended-pdf-viewer [src]="pdfurl"></ngx-extended-pdf-viewer> -->
 </div>
