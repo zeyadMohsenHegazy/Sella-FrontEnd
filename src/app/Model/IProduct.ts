@@ -11,4 +11,5 @@ export interface IProduct {
     height : number,
     categoryID : number,
     categoryName:string,
+    ImgPaths : string[] 
 }

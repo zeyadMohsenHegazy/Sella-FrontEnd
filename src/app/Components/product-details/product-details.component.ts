@@ -25,7 +25,8 @@ export class ProductDetailsComponent implements OnInit {
       width: 0,
       height: 0,
       categoryID: 0,
-      categoryName:''
+      categoryName:'',
+      ImgPaths :[]
     };
 
   ngOnInit(): void {

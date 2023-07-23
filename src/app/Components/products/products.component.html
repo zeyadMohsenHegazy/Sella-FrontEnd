@@ -32,15 +32,16 @@
                 <div class="Flex">
                     <label for="money" class="h6 d-flex">From:</label>
                     <input type="range" class="form-range" id="money" name="money" min="0" max="100" [value]="sliderValue1" (input)="updateValue1($event)" />
-                    <p class="h6" id="sliderValue">${{ sliderValue1 }}</p>
+                    <p class="h6" id="sliderValue">{{ sliderValue1 }}</p>
                 </div>
                 
                 <div class="Flex mb-2">
                     <label for="money2" class="h6">To:</label>
                     <input type="range" class="form-range" id="money2" name="money" min="100" max="1000" [value]="sliderValue2" (input)="updateValue2($event)" />
-                    <p class="h6" id="sliderValue">${{ sliderValue2 }}</p>
+                    <p class="h6" id="sliderValue">{{ sliderValue2 }}</p>
                 </div>
-               
+                <p class="h5 text-center">Form:{{sliderValue1}} EGP To:{{ sliderValue2 }} EGP</p>
+
             </div>
         </div>
 
@@ -74,7 +75,14 @@
             <div class="row">
               <div class="col-lg-3 col-md-4 col-sm-12" *ngFor="let product of filterProducts">
                     <div class="card mb-3 box-shadow">
-                    <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="Card image cap">
+                        <div class="image-container w-100">
+                            <img *ngFor="let img of product.ImgPaths; let isFirst = first" 
+                                 class="product-image w-100 m-0 p-0 rounded-2" 
+                                 [class.is-first]="isFirst" 
+                                 [src]="img" 
+                                 [alt]="product.productName" 
+                                 [title]="product.productName">
+                          </div>
                     <div class="card-body p-1">
                         <p class="h5 card-text">{{product.productName}}</p>
                         <h6 class="card-subtitle">Price:{{product.price | currency:'USD':'symbol'}}</h6>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { error } from 'jquery';
 import { IProduct } from 'src/app/Model/IProduct';
 import { ICategory } from 'src/app/Model/icategory';
 import { Item } from 'src/app/Model/pagination';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
 import { CartService } from 'src/app/Services/cart.service';
+import { ImagesService } from 'src/app/Services/images.service';
 import { ItemService } from 'src/app/Services/item-service.service';
 import { ProductsService } from 'src/app/Services/products.service';
 
@@ -22,9 +24,7 @@ export class ProductsComponent  implements OnInit {
   currentPage = 1; 
   productsPerPage = 16; 
   totalPages = 0; 
-
   Categories : any;
-
   items: Item[] = [];
 
   constructor(private productService: ProductsService,
@@ -32,7 +32,8 @@ export class ProductsComponent  implements OnInit {
     private router: Router,
     private cartserv: CartService,
     private serve: CartDetialsService,
-    public itemService: ItemService){
+    public itemService: ItemService,
+    private ImgService : ImagesService){
 
     this.listFilter = "";
   }
@@ -44,6 +45,7 @@ export class ProductsComponent  implements OnInit {
         this.totalPages = Math.ceil(this.Products.length / this.productsPerPage);
         this.filterProducts = this.Products.slice(0, this.productsPerPage);
         this.filterCategories = products;
+        this.GetImgsandAssigntoproducts();
       },
       error: (error) => {
         console.log(error);
@@ -60,8 +62,22 @@ export class ProductsComponent  implements OnInit {
     })
 
     this.loadItems();
-
   }
+
+  GetImgsandAssigntoproducts(){
+    this.filterProducts.forEach(element => {
+      this.ImgService.GetProductImages(element.productID)
+      .subscribe({
+        next:(Img:any)=>{
+          element.ImgPaths=Img;
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      })
+    });
+  }
+
 
   loadItems() {
     this.items = this.itemService.getItemsForPage(this.itemService.currentPage);
@@ -147,8 +163,8 @@ filterCategory(event: Event) {
     }
   }
 
-  sliderValue1! :number;
-  sliderValue2! :number;
+  sliderValue1 :number =0;
+  sliderValue2 :number =100;
   updateValue1(event: Event) {
     this.sliderValue1 = (event.target as HTMLInputElement).valueAsNumber;
     this.filterByPrice(this.sliderValue1,this.sliderValue2);
