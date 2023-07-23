@@ -1,0 +1,16 @@
+.ProductImg{
+    width: 96px; 
+    height: 96px;
+}
+
+select{
+    width: 100px;
+}
+
+@media (min-width: 992px) { 
+    .custom-lg-position-fixed {
+        position: fixed;
+        right: 0;
+        margin: 2em;
+    }
+}
