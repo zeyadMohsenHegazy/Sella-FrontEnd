@@ -142,7 +142,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 .card {
   position: relative;
@@ -163,6 +162,7 @@
     0 10px 10px rgba(0, 0, 0, 0.15);
   z-index: 100;
 }
+
 .card .cover {
   position: relative;
   width: 100%;
@@ -226,12 +226,16 @@
 .card .details h3 {
   font-weight: 500;
   margin: 5px 0;
+  font-family: "Poppins", sans-serif;
+
 }
 
 .card .details h2 {
   font-size: 1.5em;
   color: #3c6255;
   font-weight: 600;
+  font-family: "Poppins", sans-serif;
+
 }
 
 .card .details a {
@@ -244,4 +248,5 @@
   border-radius: 25px;
   font-weight: 500px;
   text-decoration: none;
+  font-family: "Poppins", sans-serif;
 }
