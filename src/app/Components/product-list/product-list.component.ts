@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/Services/cart.service';
 import { ICart } from 'src/app/Model/icart';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
+import { ImagesService } from 'src/app/Services/images.service';
 
 @Component({
   selector: 'app-product-list',
@@ -12,8 +13,8 @@ import { CartDetialsService } from 'src/app/Services/cart-detials.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  
-  
+
+
   Products: IProduct[] = [];
   filterProducts: IProduct[] = [];
   data: ICart = { CartID: 0, Quantity: 0, SubTotal: 0, CustomerID: 2 };
@@ -21,18 +22,19 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductsService,
     private route: ActivatedRoute,
-    private router: Router, private cartserv: CartService, private serve: CartDetialsService) {
+    private router: Router, private cartserv: CartService, private serve: CartDetialsService, private ImgService: ImagesService) {
     this.listFilter = "";
   }
   //zeyad
   ngOnInit(): void {
-    
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.productService.GetAllProductsByCategory(id).subscribe({
       next: (products) => {
         this.Products = products;
         this.filterProducts = this.Products;
+        this.GetImgsandAssigntoproducts();
       },
       error: (error) => {
         console.log(error);
@@ -44,6 +46,22 @@ export class ProductListComponent implements OnInit {
     })
 
   }
+
+  GetImgsandAssigntoproducts() {
+    this.filterProducts.forEach(element => {
+      this.ImgService.GetProductImages(element.productID)
+        .subscribe({
+          next: (Img: any) => {
+            element.ImgPaths = Img;
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
+    });
+  }
+
+
   private _listFilter: string = "";
   public get listFilter(): string {
     return this._listFilter;
@@ -53,7 +71,7 @@ export class ProductListComponent implements OnInit {
     console.log(value);
     this.filterProducts = this.performFilter(value);
   }
-  
+
   performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.Products.filter((product: IProduct) =>
@@ -77,7 +95,7 @@ export class ProductListComponent implements OnInit {
   addtocart(item: any, proid: number) {
     console.log(item);
     console.log(proid);
-    this.serve.addtocart(item); 
+    this.serve.addtocart(item);
   }
 
 
