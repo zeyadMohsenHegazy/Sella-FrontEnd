@@ -18,29 +18,41 @@
   </tr>
 </tbody>
 </table> -->
-<div class="row">
-  <div class="col-12 text-center mt-2">
-    <label class="h3 text-black m-1">Search By</label>
-    <input class="form-control w-25 d-inline rounded-2 m-1" type="text" placeholder="Search..." [(ngModel)]="listFilter">
-  </div>
-</div>
 
-<div class="container mt-3">
+
+<div class="container">
+
   <div class="row">
-    <div class="col-md-3 mb-2" *ngFor="let product of filterProducts">
-      <div class="card h-100">
-        <!-- <img class="card-img-top" src="{{product.imageUrl}}" alt="{{product.productName}}"> -->
-        <img class="card-img-top" src="../../../assets/Images/category/bedRoom.jpg" alt="{{product.productName}}">
-        <div class="card-body">
-          <h5 class="card-title">{{product.productName}}</h5>
-          <p class="card-text">{{product.description}}</p>
-          <h6 class="card-subtitle text-muted">{{product.price | currency:'USD':'symbol'}}</h6>
-        </div>
-        <div class="card-footer text-center btn-group">
-          <button class="btn btn-primary m-2" (click)="addtocart(product,product.productID)">Add to Cart</button>
-          <button class="btn btn-secondary m-2" (click)="viewDetails(product.productID)">View Details</button>
-        </div>
-      </div>
+    <div class="col-12 text-center mt-2">
+      <label class="h3 text-black m-1">Search By</label>
+      <input class="form-control w-25 d-inline rounded-2 m-1" type="text" placeholder="Search..." [(ngModel)]="listFilter">
     </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let product of filterProducts">
+          <div class="card mb-3 box-shadow">
+              <div class="image-container w-100">
+                  <img *ngFor="let img of product.ImgPaths; let isFirst = first" 
+                       class="product-image w-100 m-0 p-0 rounded-2" 
+                       [class.is-first]="isFirst" 
+                       [src]="img" 
+                       [alt]="product.productName" 
+                       [title]="product.productName">
+                </div>
+          <div class="card-body p-1">
+              <p class="h5 card-text">{{product.productName}}</p>
+              <h6 class="card-subtitle">Price:{{product.price | currency:'USD':'symbol'}}</h6>
+
+          </div>
+          <div class="card-footer text-lg-center text-md-center p-4">
+              <a class=" m-2" (click)="addtocart(product,product.productID)">
+                  <i class="fa fa-shopping-cart fa-2xl FooterLinks"></i>
+              </a>
+              <a class=" m-2" (click)="viewDetails(product.productID)">
+                  <i class="fa-solid fa-circle-info fa-2xl FooterLinks"></i>
+              </a>
+          </div>
+          </div>
+      </div>
+  </div>

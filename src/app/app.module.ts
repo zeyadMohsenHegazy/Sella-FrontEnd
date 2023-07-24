@@ -32,6 +32,10 @@ import { OffersComponent } from './Components/offers/offers.component';
 //import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
+import { ChatWithUSComponent } from './Components/chat-with-us/chat-with-us.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +57,7 @@ import { OffersComponent } from './Components/offers/offers.component';
     TopPicksComponent,
     ProductsComponent,
     ResetPasswordComponent,
+    ChatWithUSComponent,
     OffersComponent
   
     
