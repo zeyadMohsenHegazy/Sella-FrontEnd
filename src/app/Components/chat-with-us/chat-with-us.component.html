@@ -1,5 +1,5 @@
 
-   <div class="container">
+   <div class="container-fluid w-100 p-0">
     <div class="card">
       <div class="chat-list" #chatListContainer>
         <ng-container *ngFor="let item of chatMessages">
@@ -13,7 +13,7 @@
       </div>
       <div class="chat-footer">
         <input matInput id="chat-textarea" [(ngModel)]="chatInputMessage" required list="suggestions">
-        <datalist id="suggestions">
+        <datalist id="suggestions" >
             <option value="hello"></option>
             <option value="What are your store hours?">
             <option value="Can you give me a phone number for store?"></option>
@@ -23,7 +23,7 @@
             <option value="Do you have any promotions or discounts?">
           </datalist>
         <button id="send-button" (click)="send()" [disabled]="chatInputMessage === ''">
-          send
+          Send
         </button>
       </div>
     </div>
