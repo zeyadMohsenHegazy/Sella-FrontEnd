@@ -28,6 +28,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { TopPicksComponent } from './Components/top-picks/top-picks.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { OffersComponent } from './Components/offers/offers.component';
 //import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
@@ -58,7 +59,7 @@ import { ChatWithUSComponent } from './Components/chat-with-us/chat-with-us.comp
     ProductsComponent,
     ResetPasswordComponent,
     ChatWithUSComponent,
-  
+    OffersComponent
   
     
   ],
