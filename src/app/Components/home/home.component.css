@@ -27,3 +27,28 @@
     align-items: center;
     background-color: #ffffff5c;
 }
+
+
+
+.modal-dialog {
+    position: fixed;
+    right: 5.5%;
+    bottom: 8%;
+    width: 3500px;
+    max-width: 350px !important;
+}
+
+@media screen and (max-width: 425px) { /* Adjust to the breakpoint you want */
+    .modal-dialog {
+        width: 80% !important; /* Adjust to the width you want */
+        max-width: 85% !important;
+        position: fixed;
+        right: 7%;
+        bottom: 10%;
+    }
+}
+
+.modal-content {
+    width: 100%;
+    height: auto;
+}
