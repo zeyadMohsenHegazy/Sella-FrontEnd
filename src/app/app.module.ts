@@ -35,6 +35,7 @@ import { ChatWithUSComponent } from './Components/chat-with-us/chat-with-us.comp
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { ChatWithUSComponent } from './Components/chat-with-us/chat-with-us.comp
     TopPicksComponent,
     ProductsComponent,
     ResetPasswordComponent,
-    ChatWithUSComponent
+    ChatWithUSComponent,
+  
   
     
   ],
