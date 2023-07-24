@@ -13,6 +13,7 @@ import { AuthGuard } from './Guards/auth.guard';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { ChatWithUSComponent } from './Components/chat-with-us/chat-with-us.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'Checkout' , component: CheckoutComponent},
   {path: 'products' , component: ProductsComponent},
   {path:'reset' , component:ResetPasswordComponent},
+  {path:'Chat' , component:ChatWithUSComponent},
 
   {path:'**' , component: NotFoundComponent}
 ];

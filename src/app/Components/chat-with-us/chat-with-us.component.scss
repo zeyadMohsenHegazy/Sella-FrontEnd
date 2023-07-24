@@ -1,0 +1,133 @@
+$background: white;
+$primary: #212223;
+
+.container {
+
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-left: 18px;
+ margin-right: 18px;
+}
+
+.caption {
+ padding: 30px;
+ text-align: center;
+ color: $primary;
+}
+
+#thumbnail {
+ height: 130px;
+ width: 130px;
+ object-fit: cover;
+ border-radius: 50%;
+}
+
+.card {
+ //background: $background;
+ background-image: url('https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/clothes-bg.png');
+ height: 60%;
+ width: 500px;
+ height: 500px;
+ display: flex;
+ flex-direction: column;
+ filter: drop-shadow(0px 0px 5px black);
+ border-radius: 15px;
+ padding: 16px;
+
+}
+
+.chat-list {
+ margin-top: auto;
+ display: flex;
+ flex-direction: column;
+ padding: 16px;
+ overflow-y: scroll;
+
+
+ .chat-item {
+   max-width: 80%;
+   margin: 8px 0px;
+   display: flex;
+   flex-direction: row;
+
+   #message-time{color: white;}
+   
+   #message-body {
+     background: $primary;
+     margin: auto 8px;
+     padding: 12px 24px;
+     border-radius: 30px;
+     color: white;
+     display: flex;
+     flex-direction: row;
+   }
+
+   #avatar {
+     height: 44px;
+     width: 44px;
+     object-fit: cover;
+     border-radius: 50%;
+     z-index: 99;
+     border: 3px solid $background;
+   }
+ }
+
+ .left {
+   margin-right: auto;
+   margin-left: 8px;
+
+   #message-body {
+     margin-left: -10px;
+   }
+ }
+
+ .right {
+   margin-right: 8px;
+   margin-left: auto;
+   flex-direction: row-reverse;
+
+   #message-body {
+     margin-right: -10px;
+   }
+   
+ }
+}
+
+.chat-footer {
+ display: flex;
+ flex-direction: row;
+ padding: 16px;
+ background: $primary;
+ border-radius: 6px;
+
+ #chat-textarea {
+   flex: 1;
+   margin: 0 8px;
+   border: 0px;
+   box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+   padding: 16px;
+ }
+
+ #send-button {
+   border: 0;
+   box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+   background: white;
+   padding: 0 8px;
+   color: black;
+ }
+
+}
+
+#clear-button {
+ border: 0;
+ box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+ color: white;
+ padding: 10px;
+ background: $primary;
+ border-radius: 6px;
+}
+
+::-webkit-scrollbar {
+ display: none;
+}

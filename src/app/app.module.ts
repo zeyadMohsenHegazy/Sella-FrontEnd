@@ -31,6 +31,10 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
 //import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
+import { ChatWithUSComponent } from './Components/chat-with-us/chat-with-us.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +55,8 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
     CheckoutComponent,
     TopPicksComponent,
     ProductsComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ChatWithUSComponent
   
     
   ],

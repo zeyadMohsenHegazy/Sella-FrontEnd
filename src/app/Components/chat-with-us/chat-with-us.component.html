@@ -1,0 +1,31 @@
+
+   <div class="container">
+    <div class="card">
+      <div class="chat-list" #chatListContainer>
+        <ng-container *ngFor="let item of chatMessages">
+          <div class="chat-item"
+               [ngClass]="{'right' : item?.user?.id == human.id, 'left': item?.user?.id != human.id}">
+            <img id="avatar" [src]="item?.user?.profileImageUrl">
+            <p id="message-body">{{item?.message}}</p>
+            <p id="message-time">{{item?.timestamp | date: 'shortTime'}}</p>
+          </div>
+        </ng-container>
+      </div>
+      <div class="chat-footer">
+        <input matInput id="chat-textarea" [(ngModel)]="chatInputMessage" required list="suggestions">
+        <datalist id="suggestions">
+            <option value="hello"></option>
+            <option value="What are your store hours?">
+            <option value="Can you give me a phone number for store?"></option>
+            <option value="What is the store address?"></option>
+            <option value="Do you offer free shipping?">
+            <option value="What payment methods do you accept?">
+            <option value="Do you have any promotions or discounts?">
+          </datalist>
+        <button id="send-button" (click)="send()" [disabled]="chatInputMessage === ''">
+          send
+        </button>
+      </div>
+    </div>
+  </div>
+  
