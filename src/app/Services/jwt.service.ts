@@ -1,63 +1,61 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt'
+import { JwtHelperService } from '@auth0/angular-jwt';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JWTService {
-  RegisterUrl = 'http://localhost:49182/api/User/Register/'; 
+  RegisterUrl = 'http://localhost:49182/api/User/Register/';
   LoginUrl = 'http://localhost:49182/api/User/Login/';
 
-  private UserPayload :any;
-  constructor(private http:HttpClient, private route:Router) {
-   this.UserPayload = this.DecodeToken();
-   }
+  private UserPayload: any;
+  constructor(private http: HttpClient, private route: Router) {
+    this.UserPayload = this.DecodeToken();
+  }
 
- Login(UserObj :any){
-    return this.http.post<any>(`${this.LoginUrl}`,UserObj);
- }
+  Login(UserObj: any) {
+    return this.http.post<any>(`${this.LoginUrl}`, UserObj);
+  }
 
- Register(UserObj :any){
-  return this.http.post<any>(`${this.RegisterUrl}`,UserObj);
- }
+  Register(UserObj: any) {
+    return this.http.post<any>(`${this.RegisterUrl}`, UserObj);
+  }
 
-
- StoreToken(TokenValue:string){
+  StoreToken(TokenValue: string) {
     localStorage.setItem('token', TokenValue);
- }
+  }
 
- StoreUserId(Id : string){
+  StoreUserId(Id: string) {
     localStorage.setItem('UserID', Id);
- }
+  }
 
- GetToken(){
-  return localStorage.getItem('token');
- }
+  GetToken() {
+    return localStorage.getItem('token');
+  }
 
- IsLogged():boolean{
+  IsLogged(): boolean {
     return !!localStorage.getItem('token');
- }
+  }
 
-SignOut(){
-   // localStorage.removeItem('token');
-   // localStorage.removeItem('UserID');
-   localStorage.clear();
-   this.route.navigate(['home']);
-   window.location.reload();
-}
+  SignOut() {
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('UserID');
+    localStorage.clear();
+    this.route.navigate(['home']);
+    window.location.reload();
+  }
 
-DecodeToken(){
-   const JWT = new JwtHelperService();
-   const Token = this.GetToken()!;
-   console.log(JWT.decodeToken(Token));
-   return JWT.decodeToken(Token);
-}
+  DecodeToken() {
+    const JWT = new JwtHelperService();
+    const Token = this.GetToken()!;
+    console.log(JWT.decodeToken(Token));
+    return JWT.decodeToken(Token);
+  }
 
-GetFullNameFromToken(){
-   if(this.UserPayload){
+  GetFullNameFromToken() {
+    if (this.UserPayload) {
       return this.UserPayload.unique_name;
-   }
-}
-
+    }
+  }
 }

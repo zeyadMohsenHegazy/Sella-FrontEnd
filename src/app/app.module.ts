@@ -28,6 +28,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { TopPicksComponent } from './Components/top-picks/top-picks.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { OffersComponent } from './Components/offers/offers.component';
 //import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
@@ -51,7 +52,8 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
     CheckoutComponent,
     TopPicksComponent,
     ProductsComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    OffersComponent
   
     
   ],
