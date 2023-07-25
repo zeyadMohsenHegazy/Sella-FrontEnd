@@ -95,3 +95,9 @@
   background: rgb(232, 45, 45);
   color: #ffffff;
 }
+
+
+.Footers:hover {
+  color: #aba2fd !important;
+  font-weight: bold;
+}

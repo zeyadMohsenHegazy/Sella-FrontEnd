@@ -3,7 +3,7 @@
     cursor: pointer;     
 }
 .FooterLinks:hover{
-    color: rgb(255, 255, 255) !important;
+    color: rgb(0, 0, 0) !important;
 }
 .fa-circle-info{
     color: #01abf4;
@@ -58,5 +58,5 @@ input[type="range"]::-webkit-slider-runnable-track {
   }
 
   .card-footer{
-    background-color: #000000;
+    background-color: #e5e5e5;
   }
