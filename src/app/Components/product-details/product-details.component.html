@@ -1,32 +1,48 @@
-<div class="container m-lg-5 mt-2 mb-2">
+<div class="container mx-auto mt-3 mb-3">
+    <div class="card justify-content-center">
+
     <div class="row justify-content-center align-content-center">
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <img class="w-100 rounded-1" src="../../../assets/Images/category/bedRoom.jpg" alt="{{Product.productName}}">
+        <div class="col-lg-4 col-md-4 col-sm-6 mt-2 mb-2">
+            <div class="image-container w-100">
+                <img *ngFor="let img of Product.ImgPaths; let isFirst = first" 
+                     class="product-image w-100 m-0 p-0 rounded-2" 
+                     [class.is-first]="isFirst" 
+                     [src]="img"
+                     title="Sella-Firniture" 
+                     [alt]="Product.productName" 
+                     [title]="Product.productName">
+              </div> 
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6 mt-auto mb-auto ">
-            <table class="table table-hover">
+        <div class="col-lg-6 col-md-6 col-sm-6 mt-auto mb-auto ">
+            <table class="table">
                 <tr>
-                    <td>Product Name:</td>
-                    <td>{{Product.productName}}</td>
+                    <td class="h4">Product Name:</td>
+                    <td class="h5">{{Product.productName}}</td>
                 </tr>
                 <tr>
-                    <td>Product Color :</td>
-                    <td>{{Product.color}}</td>
+                    <td class="h4">Product Color :</td>
+                    <td class="h5">{{Product.color}}</td>
                 </tr>
                 <tr>
-                    <td>Description :</td>
-                    <td>{{Product.description}}</td>
+                    <td class="h4">Description :</td>
+                    <td class="h5">{{Product.description}}</td>
                 </tr>
                 <tr>
-                    <td>Dimensions :</td>
-                    <td>{{Product.length}}CM - {{Product.width}}CM - {{Product.height}}CM</td>
+                    <td class="h4">Dimensions :</td>
+                    <td class="h5">{{Product.length}}CM - {{Product.width}}CM - {{Product.height}}CM</td>
                 </tr>
                 <tr>
-                    <td>Price :</td>
-                    <td>{{Product.price | currency:'USD':'symbol'}}</td>
+                    <td class="h4">Price :</td>
+                    <td class="h5">{{Product.price | currency:'EGP':'symbol'}}</td>
                 </tr>   
             </table>
-            <button class="btn btn-info" (click)="goBack()">Go Back</button>
+            <div class="justify-content-center text-center">
+                <button class="btn btn-dark" (click)="goBack()">Go Back</button>
+            </div>
         </div>
     </div>
+
+</div>
+
+
 </div>

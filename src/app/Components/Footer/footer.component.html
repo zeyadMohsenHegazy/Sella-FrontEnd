@@ -3,8 +3,8 @@
         <div class="col-6 col-md-4 p-3 col-sm-6">
           <h5>Contact Us</h5>
           <ul class="nav flex-column">
-            <li class="nav-item "><a href="#" class="nav-link p-0 text-light text-decoration-underline">Sella@gmail.com</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light text-decoration-underline">+20(1011583454)</a></li>
+            <li class="nav-item "><a href="mailto:sella@gmail.com" class="nav-link p-0 text-light text-decoration-underline Footer">Sella@gmail.com</a></li>
+            <li class="nav-item mb-2"><a href="tel:+201555424873" class="nav-link p-0 text-light text-decoration-underline Footer">+20(1011583454)</a></li>
             <li class="nav-item text-light p-o">O1 Mall, Beni-Swief</li>
             <li class="nav-item mb-2 text-light">Sun- Sat: 11 am - 12 am (GMT+2)</li>
             <li class="nav-item mb-2 text-light mt-1">VAT registration number: 540 - 407 - 968</li>
@@ -14,11 +14,11 @@
         <div class="col-6 col-md-4 p-3 col-sm-6">
           <h5>Section</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Home</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Features</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Events</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
-            <li class="nav-item mb-2"><a routerLink="/AboutUs" class="nav-link p-0 text-light">About Us</a></li>
+            <li class="nav-item mb-2"><a routerLink="/home" class="nav-link p-0 text-light Footers">Home</a></li>
+            <li class="nav-item mb-2"><a routerLink="/AboutUs" class="nav-link p-0 text-light Footers">Blog</a></li>
+            <li class="nav-item mb-2"><a routerLink="/products" class="nav-link p-0 text-light Footers">Products</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light Footers">FAQs</a></li>
+            <li class="nav-item mb-2"><a routerLink="/contactUs" class="nav-link p-0 text-light Footers">Contact Us</a></li>
           </ul>
         </div>
   
@@ -28,7 +28,7 @@
             <li class="nav-item mb-2 text-light p-0">Find out when your order will be</li>
             <li class="nav-item mb-2 text-light p-0">delivered or schedule delivery</li>
               <li class="nav-item mb-2 text-light p-0">through your Account.</li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light text-decoration-underline">Sign In</a></li>
+            <li class="nav-item mb-2"><a routerLink="/login" class="nav-link p-0 text-light text-decoration-underline Footers">Sign In</a></li>
           </ul>
         </div>
       </div>
@@ -51,23 +51,24 @@
         <ul class="wrapper p-0 w-100 justify-content-center">
           <li class="icon facebook">
               <span class="tooltip">Facebook</span>
-              <span><i class="fab fa-facebook-f"></i></span>
+              <span><i class="fab fa-facebook-f" (click)="openFacebook()">
+              </i></span>
           </li>
           <li class="icon twitter">
               <span class="tooltip">Twitter</span>
-              <span><i class="fab fa-twitter"></i></span>
+              <span><i class="fab fa-twitter" (click)="openTwitter()"></i></span>
           </li>
           <li class="icon instagram">
               <span class="tooltip">Instagram</span>
-              <span><i class="fab fa-instagram"></i></span>
+              <span><i class="fab fa-instagram" (click)="openInsta()"></i></span>
           </li>
           <li class="icon github">
               <span class="tooltip">Github</span>
-              <span><i class="fab fa-github"></i></span>
+              <span><i class="fab fa-github" (click)="openGithub()"></i></span>
           </li>
           <li class="icon youtube">
               <span class="tooltip">Youtube</span>
-              <span><i class="fab fa-youtube"></i></span>
+              <span><i class="fab fa-youtube" (click)="openYoutube()"></i></span>
           </li>
       </ul>
 

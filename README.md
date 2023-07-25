@@ -1,5 +1,12 @@
 # SellaFrontEnd
+# Team Members 
+1- Zeyad Mohsen Hegazy
+2- Kero Fayez
+3- Mohammed gamal
+4- Mahmoud essam
+5- Yossef mostfa
 
+# Angular CLI
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
 
 ## Development server

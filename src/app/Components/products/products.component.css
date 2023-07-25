@@ -3,7 +3,7 @@
     cursor: pointer;     
 }
 .FooterLinks:hover{
-    color: black !important;
+    color: rgb(0, 0, 0) !important;
 }
 .fa-circle-info{
     color: #01abf4;
@@ -14,6 +14,12 @@
     display: flex;
     align-items: center;
     gap : .5em;
+}
+
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
@@ -49,4 +55,8 @@ input[type="range"]::-webkit-slider-runnable-track {
   
   .image-container:hover .product-image {
     opacity: 1;
+  }
+
+  .card-footer{
+    background-color: #e5e5e5;
   }

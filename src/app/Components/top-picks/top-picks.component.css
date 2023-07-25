@@ -37,7 +37,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: #ffffffe9;
   z-index: 2;
   display: flex;
   justify-content: center;
@@ -64,14 +64,14 @@
   height: 150%;
   background: #fff;
   transform: rotate(36.5deg);
-  box-shadow: 0 0 0 20px #d4af37;
+  box-shadow: 0 0 0 20px #ffeba7;
   transition: 0.5s;
   transition-delay: 1s;
 }
 
 .card:hover .cover::before {
   width: 0;
-  box-shadow: 0 0 0 250px #61876e;
+  box-shadow: 0 0 0 250px #ffeba7;
   transform: rotate(143.5deg);
 }
 
@@ -102,7 +102,7 @@
 
 .card .details h2 {
   font-size: 1.5em;
-  color: #3c6255;
+  color: #ffeba7;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
 
@@ -111,7 +111,7 @@
 .card .details a {
   display: inline-block;
   padding: 8px 20px;
-  background: #61876e;
+  background: #030303;
   color: #fff;
   margin-top: 5px;
   letter-spacing: 1px;
