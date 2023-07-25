@@ -22,7 +22,7 @@ export class ProductsComponent  implements OnInit {
   filterCategories: any;
   private _listFilter: string = "";
   currentPage = 1; 
-  productsPerPage = 16; 
+  productsPerPage = 18; 
   totalPages = 0; 
   Categories : any;
   items: Item[] = [];

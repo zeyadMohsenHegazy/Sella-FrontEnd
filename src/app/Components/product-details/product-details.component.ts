@@ -33,6 +33,8 @@ export class ProductDetailsComponent implements OnInit {
     ImgPaths: [],
   };
 
+
+  
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productService.GetProductoById(id).subscribe({

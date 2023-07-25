@@ -6,6 +6,7 @@ import { ICart } from 'src/app/Model/icart';
 import { CartDetialsService } from 'src/app/Services/cart-detials.service';
 import { CartProductsService } from 'src/app/Services/cart-products.service';
 import { CartService } from 'src/app/Services/cart.service';
+import { ImagesService } from 'src/app/Services/images.service';
 
 @Component({
   selector: 'app-cart',
@@ -22,7 +23,8 @@ export class CartComponent {
   public totalItem: number = 0;
 
   constructor(private cartService: CartDetialsService, private Pcartservice: CartProductsService
-     , private serv : CartService , private router: Router) {
+     , private serv : CartService , private router: Router,
+     private ImgService: ImagesService) {
 
   }
   ngOnInit() {
@@ -30,11 +32,25 @@ export class CartComponent {
       this.products = res;
       this.totalItem = res.length;
       this.grandtotal = this.cartService.getTotalPrice();
+      this.GetImgsandAssigntoproducts();
     })
 
 
   }
 
+  GetImgsandAssigntoproducts(){
+    this.products.forEach((element:any)=> {
+      this.ImgService.GetProductImages(element.productID)
+      .subscribe({
+        next:(Img:any)=>{
+          element.ImgPaths=Img;
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      })
+    });
+  }
   removeItem(product: any) {
     this.cartService.removeCartItem(product);
   }
